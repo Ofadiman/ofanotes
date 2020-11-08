@@ -3,8 +3,9 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { ThemeProvider } from 'styled-components'
 
-import { Layout } from './src/layout/Layout'
+import { Layout } from './src/layout/Layout.component'
 import { GlobalStyle } from './src/styles/GlobalStyle'
+import { defaultTheme } from './src/styles/themes/default.theme'
 
 export const wrapRootElement = ({ element }) => (
   <>
@@ -17,7 +18,7 @@ export const wrapRootElement = ({ element }) => (
       />
     </Helmet>
     <GlobalStyle />
-    <ThemeProvider theme={{}}>
+    <ThemeProvider theme={defaultTheme}>
       <MDXProvider components={{}}>
         <Layout>{element}</Layout>
       </MDXProvider>

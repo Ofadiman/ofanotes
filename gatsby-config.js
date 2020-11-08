@@ -5,6 +5,14 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       options: {
+        rule: {
+          include: /src\/assets/u
+        }
+      },
+      resolve: 'gatsby-plugin-react-svg'
+    },
+    {
+      options: {
         icon: 'favicon.svg',
         short_name: 'Ofanotes',
         start_url: '/'
@@ -20,14 +28,7 @@ module.exports = {
       resolve: 'gatsby-plugin-typescript'
     },
     'gatsby-plugin-styled-components',
-    {
-      // options: {
-      //   defaultLayouts: {
-      //     default: require.resolve('./src/layout/Layout.tsx')
-      //   }
-      // },
-      resolve: 'gatsby-plugin-mdx'
-    }
+    'gatsby-plugin-mdx'
   ],
   siteMetadata: {
     author: 'Ofadiman',

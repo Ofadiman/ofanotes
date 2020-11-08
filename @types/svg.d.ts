@@ -1,5 +1,5 @@
 /* eslint-disable */
 
 declare module '*.svg' {
-  export const ReactComponent
+  export default SvgComponent as React.FC
 }
