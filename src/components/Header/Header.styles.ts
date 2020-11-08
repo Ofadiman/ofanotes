@@ -4,14 +4,14 @@ import GithubIcon from '../../assets/icons/github.svg'
 
 export const StyledGithubIcon = styled(GithubIcon)`
   ${({ theme }) => css`
-    fill: ${theme.palette.primary.text};
+    fill: ${theme.palette.header.text};
   `}
 `
 
 export const StyledHeaderTitle = styled.h1`
   ${({ theme }) => css`
     border-radius: ${theme.bordering(3)};
-    color: ${theme.palette.primary.text};
+    color: ${theme.palette.header.text};
     cursor: pointer;
     font-size: 2.2rem;
     font-weight: normal;
@@ -23,7 +23,7 @@ export const StyledHeaderTitle = styled.h1`
     text-transform: uppercase;
 
     &:hover {
-      color: ${theme.palette.primary.hoverText};
+      color: ${theme.palette.header.textHover};
     }
   `}
 `
@@ -64,7 +64,7 @@ export const StyledHeader = styled.header`
         rgba(152, 152, 152, 0.05) 75%,
         rgba(152, 152, 152, 0.05) 100%
       ),
-      linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark});
+      linear-gradient(90deg, ${theme.palette.header.backgroundLight}, ${theme.palette.header.backgroundDark});
     display: flex;
     height: 64px;
     justify-content: space-between;

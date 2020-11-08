@@ -2,6 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 
 import { Header } from '../components/Header/Header.component'
+import { StyledLayout, StyledMain } from './Layout.styles'
 import { LayoutQueryResult } from './Layout.types'
 
 export const Layout: FCC = ({ children }) => {
@@ -16,10 +17,10 @@ export const Layout: FCC = ({ children }) => {
   `)
 
   return (
-    <div>
+    <StyledLayout>
       <Header title={queryResult.site.siteMetadata.title} />
-      <main>{children}</main>
+      <StyledMain>{children}</StyledMain>
       <footer>{'footer'}</footer>
-    </div>
+    </StyledLayout>
   )
 }

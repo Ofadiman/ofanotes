@@ -10,9 +10,17 @@ export const IconButton: FCC<IconButtonProps> = ({
   onClick,
   className,
   iconColor,
-  rippleColor
+  rippleColor,
+  iconHoverBackgroundColor,
+  iconHoverColor
 }) => (
-  <StyledIconButton className={className} iconColor={iconColor} onClick={onClick}>
+  <StyledIconButton
+    className={className}
+    iconColor={iconColor}
+    iconHoverBackgroundColor={iconHoverBackgroundColor}
+    iconHoverColor={iconHoverColor}
+    onClick={onClick}
+  >
     {children}
     <RippleEffect color={rippleColor} duration={rippleDuration} />
   </StyledIconButton>

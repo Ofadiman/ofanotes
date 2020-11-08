@@ -6,14 +6,24 @@ declare module 'styled-components' {
     mediaQueries: {}
     name: string
     palette: {
-      primary: {
-        dark: string
-        hoverBackground: string
-        hoverText: string
-        light: string
-        main: string
+      header: {
+        backgroundDark: string
+        backgroundLight: string
+        iconHoverBackground: string
         ripple: string
         text: string
+        textHover: string
+      }
+
+      input: {
+        decorator: string
+        decoratorActive: string
+        decoratorHover: string
+      }
+
+      typography: {
+        light: string
+        main: string
       }
     }
     spacing: (spacingValue: number) => string

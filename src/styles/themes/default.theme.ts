@@ -8,14 +8,22 @@ export const defaultTheme: DefaultTheme = {
   mediaQueries: {},
   name: 'Default',
   palette: {
-    primary: {
-      dark: 'hsl(265, 100%, 50%)',
-      hoverBackground: 'hsla(265, 100%, 90%, 10%)',
-      hoverText: 'hsl(265, 100%, 90%)',
-      light: 'hsl(265, 100%, 70%)',
-      main: 'hsl(265, 100%, 60%)',
+    header: {
+      backgroundDark: 'hsl(265, 100%, 55%)',
+      backgroundLight: 'hsl(265, 100%, 65%)',
+      iconHoverBackground: 'hsla(265, 100%, 90%, 10%)',
       ripple: 'hsl(265, 0%, 80%)',
-      text: 'hsl(265, 100%, 100%)'
+      text: 'hsl(265, 100%, 95%)',
+      textHover: 'hsla(265, 100%, 100%)'
+    },
+    input: {
+      decorator: 'hsla(265, 100%, 90%)',
+      decoratorActive: 'hsl(265, 100%, 60%)',
+      decoratorHover: 'hsl(265, 100%, 75%)'
+    },
+    typography: {
+      light: 'hsl(0, 0%, 50%)',
+      main: 'hsl(0, 0%, 20%)'
     }
   },
   spacing,
