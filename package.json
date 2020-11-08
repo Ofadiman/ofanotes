@@ -17,15 +17,16 @@
     "eslint:find:deprecated": "eslint-find-rules --deprecated --no-error .eslintrc.js",
     "eslint:find:unused": "eslint-find-rules --unused --no-error .eslintrc.js",
     "gen": "plop",
-    "lint:check": "eslint {src,codegen,storybook}/**/*.{ts,tsx,js,jsx}",
-    "lint:fix": "eslint {src,codegen,storybook}/**/*.{ts,tsx,js,jsx} --fix",
-    "postgen": "eslint -f ./eslint.formatter.js {src,codegen,storybook}/**/*.{ts,tsx,js,jsx} --fix || exit 0",
+    "lint:check": "eslint {src,codegen}/**/*.{ts,tsx,js,jsx}",
+    "lint:fix": "eslint {src,codegen}/**/*.{ts,tsx,js,jsx} --fix",
+    "postgen": "eslint -f ./eslint.formatter.js {src,codegen}/**/*.{ts,tsx,js,jsx} --fix || exit 0",
     "serve": "gatsby serve",
     "start": "npm run develop"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.21",
     "@mdx-js/react": "^1.6.21",
+    "chalk": "^4.1.0",
     "gatsby": "^2.25.3",
     "gatsby-image": "^2.4.21",
     "gatsby-plugin-manifest": "^2.5.2",
@@ -43,6 +44,7 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@types/chalk": "^2.2.0",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^14.14.6",
     "@types/react": "^16.9.56",
