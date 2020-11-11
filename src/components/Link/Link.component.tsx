@@ -8,7 +8,11 @@ export const Link: FCC<LinkProps> = ({ children, to, className }) => {
   const isOnPageLink = to.startsWith('#')
 
   if (isInternalLink) {
-    return <StyledGatsbyLink to={to}>{children}</StyledGatsbyLink>
+    return (
+      <StyledGatsbyLink className={className} to={to}>
+        {children}
+      </StyledGatsbyLink>
+    )
   }
 
   if (isOnPageLink) {

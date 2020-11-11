@@ -17,7 +17,7 @@ export const defaultTheme: DefaultTheme = {
       textHover: 'hsla(265, 100%, 100%)'
     },
     input: {
-      decorator: 'hsla(265, 100%, 90%)',
+      decorator: 'hsla(265, 0%, 90%)',
       decoratorActive: 'hsl(265, 100%, 60%)',
       decoratorHover: 'hsl(265, 100%, 75%)'
     },

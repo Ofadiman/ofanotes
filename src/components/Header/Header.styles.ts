@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import GithubIcon from '../../assets/icons/github.svg'
+import GithubIcon from '../../assets/icons/github.inline.svg'
 
 export const StyledGithubIcon = styled(GithubIcon)`
   ${({ theme }) => css`

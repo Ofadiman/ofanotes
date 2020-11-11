@@ -6,7 +6,7 @@ export const StyledInputDecorator = styled.div<StyledInputDecoratorProps>`
   ${({ theme, isActive }) => css`
     background-color: ${theme.palette.input.decorator};
     bottom: 0;
-    height: 2px;
+    height: 1px;
     position: absolute;
     width: 100%;
 
@@ -57,6 +57,7 @@ export const StyledInputWrapper = styled.div`
     &:hover {
       ${StyledInputDecorator} {
         background-color: ${theme.palette.input.decoratorHover};
+        height: 2px;
       }
     }
   `}
