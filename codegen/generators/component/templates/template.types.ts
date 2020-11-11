@@ -1,7 +1,7 @@
-import { Component } from '../component.const'
+import { componentConst } from '../component.const'
 
 export const template = `
-export interface {{ ${Component.Vars.Name} }}Props {
+export interface {{ ${componentConst.vars.name} }}Props {
   className?: string
 }
 `
