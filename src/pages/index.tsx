@@ -18,43 +18,59 @@ export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Elem
   const initialOtherMenuItemsRef = useRef(filterMenuItems(otherMenuItemRegex, data.allMdx.edges))
   const [filteredHowToMenuItems, setFilteredHowToMenuItems] = useState(initialHowToMenuItemsRef.current)
   const [filteredOtherMenuItems, setFilteredOtherMenuItems] = useState(initialOtherMenuItemsRef.current)
-  const [inputValue, setInputValue] = useState('')
+  const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
-    if (inputValue === '') {
+    if (searchValue.trim() === '') {
       setFilteredHowToMenuItems(initialHowToMenuItemsRef.current)
       setFilteredOtherMenuItems(initialOtherMenuItemsRef.current)
     } else {
-      const currentSearchRegex = new RegExp(inputValue, 'i')
+      const currentSearchRegex = new RegExp(searchValue.trim(), 'i')
 
       setFilteredHowToMenuItems(filterMenuItems(currentSearchRegex, initialHowToMenuItemsRef.current))
       setFilteredOtherMenuItems(filterMenuItems(currentSearchRegex, initialOtherMenuItemsRef.current))
     }
-  }, [inputValue])
+  }, [searchValue])
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setInputValue(event.target.value)
+    setSearchValue(event.target.value)
   }
 
   return (
     <StyledIndexPage>
       <StyledPageTitle>{'Welcome to Ofanotes!'}</StyledPageTitle>
-      <Input Icon={SearchSvg} label={'Search...'} onChange={handleInputChange} type={'text'} value={inputValue} />
+      <Input Icon={SearchSvg} label={'Search...'} onChange={handleInputChange} type={'text'} value={searchValue} />
       <StyledSectionTitle>{'How to'}</StyledSectionTitle>
       <StyledMenuItemList>
-        {filteredHowToMenuItems.map(({ node }) => (
-          <MenuItem key={node.slug} tags={node.frontmatter.tags} to={`/notes/${node.slug}/`}>
-            {node.frontmatter.title}
-          </MenuItem>
-        ))}
+        {filteredHowToMenuItems.length === 0 ? (
+          <h6>{'There are not matches for your query'}</h6>
+        ) : (
+          filteredHowToMenuItems.map(({ node }) => (
+            <MenuItem
+              highlight={searchValue}
+              key={node.slug}
+              tags={node.frontmatter.tags}
+              text={node.frontmatter.title}
+              to={`/notes/${node.slug}/`}
+            />
+          ))
+        )}
       </StyledMenuItemList>
       <StyledSectionTitle>{'Others'}</StyledSectionTitle>
       <StyledMenuItemList>
-        {filteredOtherMenuItems.map(({ node }) => (
-          <MenuItem key={node.slug} tags={node.frontmatter.tags} to={`/notes/${node.slug}/`}>
-            {node.frontmatter.title}
-          </MenuItem>
-        ))}
+        {filteredOtherMenuItems.length === 0 ? (
+          <h6>{'There are not matches for your query'}</h6>
+        ) : (
+          filteredOtherMenuItems.map(({ node }) => (
+            <MenuItem
+              highlight={searchValue}
+              key={node.slug}
+              tags={node.frontmatter.tags}
+              text={node.frontmatter.title}
+              to={`/notes/${node.slug}/`}
+            />
+          ))
+        )}
       </StyledMenuItemList>
     </StyledIndexPage>
   )

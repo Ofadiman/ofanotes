@@ -25,6 +25,10 @@ declare module 'styled-components' {
         icon: string
         label: string
       }
+
+      menuItem: {
+        highlight: string
+      }
     }
     spacing: (spacingValue: number) => string
     typography: {

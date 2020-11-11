@@ -12,11 +12,16 @@ export const StyledMenuItemText = styled.p`
     padding: 0 ${theme.spacing(4)};
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    span {
+      color: ${theme.palette.menuItem.highlight};
+      font-weight: bold;
+    }
   `}
 `
 
 export const StyledLink = styled(Link)<StyledMenuItemProps>`
-  ${({ theme, hoverBackgroundColor }) => css`
+  ${({ theme, hue }) => css`
     align-items: center;
     border-radius: ${theme.bordering(1)};
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.12);
@@ -30,7 +35,7 @@ export const StyledLink = styled(Link)<StyledMenuItemProps>`
     transition: background-color 200ms ease-in-out;
 
     &:hover {
-      background-color: ${hoverBackgroundColor};
+      background-color: hsl(${hue}, 100%, 95%);
     }
 
     svg {

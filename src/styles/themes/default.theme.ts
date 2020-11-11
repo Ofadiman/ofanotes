@@ -25,6 +25,9 @@ export const defaultTheme: DefaultTheme = {
       decoratorHover: 'hsl(265, 100%, 75%)',
       icon: 'hsl(0, 0%, 50%)',
       label: 'hsl(0, 0%, 50%)'
+    },
+    menuItem: {
+      highlight: 'hsl(265, 100%, 60%)'
     }
   },
   spacing,
