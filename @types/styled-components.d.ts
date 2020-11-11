@@ -3,7 +3,10 @@ import 'styled-components'
 declare module 'styled-components' {
   export interface DefaultTheme {
     bordering: (borderingValue: number) => string
-    mediaQueries: {}
+    mediaQueries: {
+      desktop: string
+      tablet: string
+    }
     name: string
     palette: {
       header: {
@@ -19,15 +22,22 @@ declare module 'styled-components' {
         decorator: string
         decoratorActive: string
         decoratorHover: string
-      }
-
-      typography: {
-        light: string
-        main: string
+        icon: string
+        label: string
       }
     }
     spacing: (spacingValue: number) => string
-    typography: {}
+    typography: {
+      body: FlattenSimpleInterpolation
+      button: FlattenSimpleInterpolation
+      h1: FlattenSimpleInterpolation
+      h2: FlattenSimpleInterpolation
+      h3: FlattenSimpleInterpolation
+      h4: FlattenSimpleInterpolation
+      h5: FlattenSimpleInterpolation
+      h6: FlattenSimpleInterpolation
+      input: FlattenSimpleInterpolation
+    }
     zIndex: {}
   }
 }

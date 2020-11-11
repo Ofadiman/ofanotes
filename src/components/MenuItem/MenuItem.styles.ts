@@ -5,10 +5,8 @@ import { StyledMenuItemProps } from './MenuItem.types'
 
 export const StyledMenuItemText = styled.p`
   ${({ theme }) => css`
-    color: ${theme.palette.typography.main};
+    ${theme.typography.button};
     flex-grow: 1;
-    font-size: 1.8rem;
-    font-weight: 500;
     letter-spacing: 1px;
     overflow: hidden;
     padding: 0 ${theme.spacing(4)};
@@ -38,7 +36,9 @@ export const StyledLink = styled(Link)<StyledMenuItemProps>`
     svg {
       height: 24px;
       margin: ${theme.spacing(2)};
+      min-height: 24px;
       min-width: 24px;
+      width: 24px;
     }
   `}
 `

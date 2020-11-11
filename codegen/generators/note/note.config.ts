@@ -11,7 +11,7 @@ import { noteConst } from './note.const'
 export const noteConfig: PlopGeneratorConfig = {
   actions: (answers) => {
     if (answers?.[noteConst.vars.shouldGenerateCode]) {
-      answers[noteConst.vars.createdAt] = new Date().toISOString().split('T')[0].split('-').reverse().join('-')
+      answers[noteConst.vars.createdAt] = new Date().toISOString()
       answers[noteConst.vars.title] = answers[noteConst.vars.title].replace(/ +/gu, ' ').trim()
 
       if (answers[noteConst.vars.tags].length > 1) {

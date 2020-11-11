@@ -5,7 +5,7 @@ import { inputReducer, InputReducerState } from './Input.reducer'
 import { StyledInput, StyledInputDecorator, StyledInputLabel, StyledInputWrapper } from './Input.styles'
 import { InputProps } from './Input.types'
 
-export const Input: FC<InputProps> = ({ className, type, onChange, label }) => {
+export const Input: FC<InputProps> = ({ className, type, onChange, label, Icon }) => {
   const [state, dispatch] = useReducer(inputReducer, new InputReducerState())
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -34,6 +34,7 @@ export const Input: FC<InputProps> = ({ className, type, onChange, label }) => {
         type={type}
         value={state.value}
       />
+      {Icon && <Icon />}
       <StyledInputDecorator isActive={state.isActive} />
     </StyledInputWrapper>
   )

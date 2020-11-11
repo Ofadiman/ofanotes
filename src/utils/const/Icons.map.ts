@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import CSSSvg from '../../assets/icons/css.inline.svg'
 import DockerSvg from '../../assets/icons/docker.inline.svg'
 import GitSvg from '../../assets/icons/git.inline.svg'
@@ -10,11 +12,11 @@ import { Tags } from './Tags.enum'
 
 export const Icons = new Map<string, FC>()
 
-Icons.set(Tags.CSS, (CSSSvg as unknown) as FC)
-Icons.set(Tags.Docker, (DockerSvg as unknown) as FC)
-Icons.set(Tags.Git, (GitSvg as unknown) as FC)
-Icons.set(Tags.JavaScript, (JavaScriptSvg as unknown) as FC)
-Icons.set(Tags.React, (ReactSvg as unknown) as FC)
-Icons.set(Tags.SQL, (SQLSvg as unknown) as FC)
-Icons.set(Tags.TypeScript, (TypeScriptSvg as unknown) as FC)
-Icons.set(Tags.Utilities, (UtilitiesSvg as unknown) as FC)
+Icons.set(Tags.CSS, CSSSvg)
+Icons.set(Tags.Docker, DockerSvg)
+Icons.set(Tags.Git, GitSvg)
+Icons.set(Tags.JavaScript, JavaScriptSvg)
+Icons.set(Tags.React, ReactSvg)
+Icons.set(Tags.SQL, SQLSvg)
+Icons.set(Tags.TypeScript, TypeScriptSvg)
+Icons.set(Tags.Utilities, UtilitiesSvg)

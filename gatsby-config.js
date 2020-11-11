@@ -5,6 +5,13 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       options: {
+        name: `notes`,
+        path: `${__dirname}/src/pages/notes/`
+      },
+      resolve: `gatsby-source-filesystem`
+    },
+    {
+      options: {
         rule: {
           include: /src\/assets/u
         }

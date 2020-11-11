@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 export const getIconFromIconsMapByTag = (IconsMap: Map<string, FC>, tag: string): FC => {
   const base64EncodedSvgIcon = IconsMap.get(tag)
 

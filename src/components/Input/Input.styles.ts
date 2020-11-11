@@ -26,9 +26,8 @@ export const StyledInputDecorator = styled.div<StyledInputDecoratorProps>`
 
 export const StyledInput = styled.input`
   ${({ theme }) => css`
+    ${theme.typography.input};
     border: none;
-    color: ${theme.palette.typography.main};
-    font-size: 2rem;
     height: 100%;
     outline: none;
     width: 100%;
@@ -37,19 +36,21 @@ export const StyledInput = styled.input`
 
 export const StyledInputLabel = styled.label<StyledInputLabelProps>`
   ${({ theme, isActive }) => css`
-    color: ${theme.palette.typography.light};
+    color: ${theme.palette.input.label};
     cursor: text;
-    font-size: 2rem;
+    font-size: 1.8rem;
     position: absolute;
     top: ${isActive ? '0' : '50%'};
-    transform: translateY(-50%) ${isActive ? 'scale(0.5)' : 'scale(1)'};
+    transform: translateY(-50%) ${isActive ? 'scale(0.6)' : 'scale(1)'};
     transform-origin: left;
-    transition: top 200ms ease-in-out, transform 200ms ease-in-out;
+    transition: top 200ms ease-in-out, transform 200ms ease-in-out, font-size 200ms ease-in-out;
   `}
 `
 
 export const StyledInputWrapper = styled.div`
   ${({ theme }) => css`
+    align-items: center;
+    display: flex;
     height: 40px;
     position: relative;
     width: 100%;
@@ -59,6 +60,12 @@ export const StyledInputWrapper = styled.div`
         background-color: ${theme.palette.input.decoratorHover};
         height: 2px;
       }
+    }
+
+    svg {
+      fill: ${theme.palette.input.icon};
+      height: 16px;
+      width: 16px;
     }
   `}
 `

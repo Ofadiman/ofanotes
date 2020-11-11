@@ -17,8 +17,8 @@ export const wrapRootElement = ({ element }) => (
         rel={'stylesheet'}
       />
     </Helmet>
-    <GlobalStyle />
     <ThemeProvider theme={defaultTheme}>
+      <GlobalStyle />
       <MDXProvider components={{}}>
         <Layout>{element}</Layout>
       </MDXProvider>

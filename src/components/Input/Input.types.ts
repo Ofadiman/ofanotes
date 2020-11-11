@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent, FC } from 'react'
 
 import { InputReducerActionTypes } from './Input.actions'
 
@@ -8,6 +8,7 @@ export interface InputReducerAction<PayloadType> {
 }
 
 export interface InputProps {
+  Icon?: FC
   className?: string
   label: string
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
