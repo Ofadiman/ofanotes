@@ -57,6 +57,7 @@ export const StyledCodeHighlighter = styled.pre`
     background-color: ${theme.palette.codeHighlighter.background} !important;
     border-radius: ${theme.bordering(3)};
     font-size: 2rem;
+    margin: ${theme.spacing(10)} 0;
     overflow: auto;
     padding: ${theme.spacing(3)} 0;
     position: relative;

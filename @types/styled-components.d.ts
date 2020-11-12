@@ -34,18 +34,22 @@ declare module 'styled-components' {
       menuItem: {
         highlight: string
       }
+      typography: {
+        main: string
+      }
     }
     spacing: (spacingValue: number) => string
     typography: {
-      body: FlattenSimpleInterpolation
-      button: FlattenSimpleInterpolation
-      h1: FlattenSimpleInterpolation
-      h2: FlattenSimpleInterpolation
-      h3: FlattenSimpleInterpolation
-      h4: FlattenSimpleInterpolation
-      h5: FlattenSimpleInterpolation
-      h6: FlattenSimpleInterpolation
-      input: FlattenSimpleInterpolation
+      body: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      button: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      h1: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      h2: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      h3: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      h4: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      h5: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      h6: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      input: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      p: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     zIndex: {}
   }

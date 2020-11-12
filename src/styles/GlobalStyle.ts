@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     html {
       font-size: 62.5%;
       font-family: Roboto, sans-serif;
+      line-height: 1.2;
     }
 
     body {
@@ -45,8 +46,16 @@ export const GlobalStyle = createGlobalStyle`
       ${theme.typography.h6};
     }
 
+    p {
+      ${theme.typography.p}
+    }
+
     button {
       ${theme.typography.button}
+    }
+
+    input {
+      ${theme.typography.input}
     }
   `}
 `

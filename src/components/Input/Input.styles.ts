@@ -25,13 +25,10 @@ export const StyledInputDecorator = styled.div<StyledInputDecoratorProps>`
 `
 
 export const StyledInput = styled.input`
-  ${({ theme }) => css`
-    ${theme.typography.input};
-    border: none;
-    height: 100%;
-    outline: none;
-    width: 100%;
-  `}
+  border: none;
+  height: 100%;
+  outline: none;
+  width: 100%;
 `
 
 export const StyledInputLabel = styled.label<StyledInputLabelProps>`

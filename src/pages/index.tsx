@@ -4,12 +4,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import SearchSvg from '../assets/icons/search.inline.svg'
 import { Input } from '../components/Input/Input.component'
 import { MenuItem } from '../components/MenuItem/MenuItem.component'
-import {
-  StyledIndexPage,
-  StyledMenuItemList,
-  StyledPageTitle,
-  StyledSectionTitle
-} from '../utils/pages/index/index.styles'
+import { StyledIndexPage, StyledMenuItemList } from '../utils/pages/index/index.styles'
 import { HomePageQueryResult } from '../utils/pages/index/index.types'
 import { filterMenuItems, howToMenuItemRegex, otherMenuItemRegex } from '../utils/pages/index/index.utils'
 
@@ -38,9 +33,9 @@ export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Elem
 
   return (
     <StyledIndexPage>
-      <StyledPageTitle>{'Welcome to Ofanotes!'}</StyledPageTitle>
+      <h1>{'Welcome to Ofanotes!'}</h1>
       <Input Icon={SearchSvg} label={'Search...'} onChange={handleInputChange} type={'text'} value={searchValue} />
-      <StyledSectionTitle>{'How to'}</StyledSectionTitle>
+      <h3>{'How to'}</h3>
       <StyledMenuItemList>
         {filteredHowToMenuItems.length === 0 ? (
           <h6>{'There are not matches for your query'}</h6>
@@ -56,7 +51,7 @@ export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Elem
           ))
         )}
       </StyledMenuItemList>
-      <StyledSectionTitle>{'Others'}</StyledSectionTitle>
+      <h3>{'Others'}</h3>
       <StyledMenuItemList>
         {filteredOtherMenuItems.length === 0 ? (
           <h6>{'There are not matches for your query'}</h6>

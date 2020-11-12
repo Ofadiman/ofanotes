@@ -1,8 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const StyledMain = styled.main`
-  margin: 0 auto;
-  width: 1000px;
+  ${({ theme }) => css`
+    margin: ${theme.spacing(10)} auto;
+    max-width: 1000px;
+    width: 90%;
+  `}
 `
 
 export const StyledLayout = styled.div`

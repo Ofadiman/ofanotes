@@ -35,54 +35,88 @@ export const defaultTheme: DefaultTheme = {
     },
     menuItem: {
       highlight: 'hsl(265, 100%, 60%)'
+    },
+    typography: {
+      main: 'hsl(0, 0%, 20%)'
     }
   },
   spacing,
   typography: {
     body: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 1.6rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 1.6rem;
+        font-weight: normal;
+      `}
     `,
     button: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 1.8rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 1.8rem;
+        font-weight: normal;
+      `}
     `,
     h1: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 3rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 4rem;
+        font-weight: normal;
+        letter-spacing: 1px;
+        margin: ${theme.spacing(8)} 0;
+      `}
     `,
     h2: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 2.8rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 2.8rem;
+        font-weight: normal;
+        margin: ${theme.spacing(7)} 0;
+      `}
     `,
     h3: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 2.6rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 2.6rem;
+        font-weight: normal;
+        letter-spacing: 1px;
+        margin: ${theme.spacing(6)} 0;
+      `}
     `,
     h4: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 2.4rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 2.4rem;
+        font-weight: normal;
+        margin: ${theme.spacing(5)} 0;
+      `}
     `,
     h5: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 2.2rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 2.2rem;
+        font-weight: normal;
+        margin: ${theme.spacing(4)} 0;
+      `}
     `,
     h6: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 2rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 2rem;
+        font-weight: normal;
+        margin: ${theme.spacing(3)} 0;
+      `}
     `,
     input: css`
-      color: hsl(0, 0%, 20%);
-      font-size: 1.8rem;
-      font-weight: normal;
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        font-size: 1.8rem;
+        font-weight: normal;
+      `}
+    `,
+    p: css`
+      ${({ theme }) => css`
+        margin: ${theme.spacing(2)} 0;
+      `}
     `
   },
   zIndex: {}
