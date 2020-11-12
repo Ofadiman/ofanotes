@@ -9,6 +9,13 @@ declare module 'styled-components' {
     }
     name: string
     palette: {
+      codeHighlighter: {
+        background: string
+        languageBadge: string
+        languageBadgeText: string
+        lineDecorator: string
+        lineHighlighted: string
+      }
       header: {
         backgroundDark: string
         backgroundLight: string
@@ -17,7 +24,6 @@ declare module 'styled-components' {
         text: string
         textHover: string
       }
-
       input: {
         decorator: string
         decoratorActive: string
@@ -25,7 +31,6 @@ declare module 'styled-components' {
         icon: string
         label: string
       }
-
       menuItem: {
         highlight: string
       }

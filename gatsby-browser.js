@@ -1,8 +1,11 @@
+/* eslint-disable react/display-name */
 import { MDXProvider } from '@mdx-js/react'
+import { preToCodeBlock } from 'mdx-utils'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { ThemeProvider } from 'styled-components'
 
+import { CodeHighlighter } from './src/components/CodeHighlighter/CodeHighlighter.component'
 import { Layout } from './src/layout/Layout.component'
 import { GlobalStyle } from './src/styles/GlobalStyle'
 import { defaultTheme } from './src/styles/themes/default.theme'
@@ -16,10 +19,22 @@ export const wrapRootElement = ({ element }) => (
         }
         rel={'stylesheet'}
       />
+      <style>{`.token: { color: 'red' }`}</style>
     </Helmet>
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <MDXProvider components={{}}>
+      <MDXProvider
+        components={{
+          pre: (preProps) => {
+            const props = preToCodeBlock(preProps)
+            if (props) {
+              return <CodeHighlighter {...props} />
+            }
+
+            return <pre {...preProps} />
+          }
+        }}
+      >
         <Layout>{element}</Layout>
       </MDXProvider>
     </ThemeProvider>

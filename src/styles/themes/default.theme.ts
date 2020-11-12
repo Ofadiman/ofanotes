@@ -11,6 +11,13 @@ export const defaultTheme: DefaultTheme = {
   },
   name: 'Default',
   palette: {
+    codeHighlighter: {
+      background: 'hsl(0, 0%, 13%)',
+      languageBadge: 'hsl(265, 100%, 70%)',
+      languageBadgeText: 'hsl(265, 100%, 100%)',
+      lineDecorator: 'hsl(265, 100%, 70%)',
+      lineHighlighted: 'hsl(0, 0%, 18%)'
+    },
     header: {
       backgroundDark: 'hsl(265, 100%, 55%)',
       backgroundLight: 'hsl(265, 100%, 65%)',

@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 
     html {
       font-size: 62.5%;
-      font-family: Cabin, sans-serif;
+      font-family: Roboto, sans-serif;
     }
 
     body {
@@ -49,5 +49,4 @@ export const GlobalStyle = createGlobalStyle`
       ${theme.typography.button}
     }
   `}
-  
 `
