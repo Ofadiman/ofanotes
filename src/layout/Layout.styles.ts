@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const StyledMain = styled.main`
   ${({ theme }) => css`
-    margin: ${theme.spacing(10)} auto;
+    margin: ${theme.spacing(10)} auto ${theme.spacing(18)};
     max-width: 1000px;
     width: 90%;
   `}

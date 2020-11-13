@@ -6,8 +6,14 @@ import { spacing } from '../functions/spacing'
 export const defaultTheme: DefaultTheme = {
   bordering,
   mediaQueries: {
-    desktop: '@media(min-width: 1200px)',
-    tablet: '@media(min-width: 768px)'
+    below: {
+      desktop: '@media(max-width: 1200px)',
+      tablet: '@media(max-width: 768px)'
+    },
+    up: {
+      desktop: '@media(min-width: 1200px)',
+      tablet: '@media(min-width: 768px)'
+    }
   },
   name: 'Default',
   palette: {

@@ -4,8 +4,14 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     bordering: (borderingValue: number) => string
     mediaQueries: {
-      desktop: string
-      tablet: string
+      below: {
+        desktop: string
+        tablet: string
+      }
+      up: {
+        desktop: string
+        tablet: string
+      }
     }
     name: string
     palette: {

@@ -11,6 +11,10 @@ export const StyledIconCaption = styled.span`
     transform: translateX(-50%);
     transition: 200ms opacity ease-in-out;
     width: 200px;
+
+    ${theme.mediaQueries.below.tablet} {
+      display: none;
+    }
   `}
 `
 
@@ -32,7 +36,7 @@ export const StyledIconContainer = styled.div`
   `}
 `
 
-export const StyledFooter = styled.div`
+export const StyledFooter = styled.footer`
   ${({ theme }) => css`
     align-items: center;
     display: flex;
