@@ -7,6 +7,6 @@ import { Styled{{ ${componentConst.vars.name} }} } from './{{ ${componentConst.v
 import { {{ ${componentConst.vars.name} }}Props } from './{{ ${componentConst.vars.name} }}.types'
 
 export const {{ ${componentConst.vars.name} }}: FC<{{ ${componentConst.vars.name} }}Props> = ({ className }) => {
-  return <Styled{{ ${componentConst.vars.name} }} className={className}>{\`{{ ${componentConst.vars.name} }}\`}</Styled{{ ${componentConst.vars.name} }}>
+  return <Styled{{ ${componentConst.vars.name} }} className={className}>{'{{ ${componentConst.vars.name} }}'}</Styled{{ ${componentConst.vars.name} }}>
 }
 `

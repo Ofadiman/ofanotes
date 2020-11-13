@@ -18,6 +18,10 @@ export const defaultTheme: DefaultTheme = {
       lineDecorator: 'hsl(265, 100%, 70%)',
       lineHighlighted: 'hsl(0, 0%, 18%)'
     },
+    footer: {
+      decoration: 'hsl(0, 0%, 80%)',
+      iconCaption: 'hsl(0, 0%, 30%)'
+    },
     header: {
       backgroundDark: 'hsl(265, 100%, 55%)',
       backgroundLight: 'hsl(265, 100%, 65%)',

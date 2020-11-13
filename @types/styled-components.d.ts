@@ -16,6 +16,10 @@ declare module 'styled-components' {
         lineDecorator: string
         lineHighlighted: string
       }
+      footer: {
+        decoration: string
+        iconCaption: string
+      }
       header: {
         backgroundDark: string
         backgroundLight: string

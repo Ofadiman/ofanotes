@@ -10,7 +10,7 @@ export const StyledMain = styled.main`
 
 export const StyledLayout = styled.div`
   display: grid;
-  grid-template-rows: 64px 1fr 100px;
+  grid-template-rows: 64px 1fr 150px;
   height: 100vh;
   overflow-y: auto;
 `
