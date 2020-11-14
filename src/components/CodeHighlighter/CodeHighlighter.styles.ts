@@ -5,31 +5,27 @@ import { StyledLineProps } from './CodeHighlighter.types'
 export const StyledLanguageBadge = styled.span`
   ${({ theme }) => css`
     background-color: ${theme.palette.codeHighlighter.languageBadge};
-    border-radius: ${theme.bordering(3)};
+    border-radius: 12px;
     color: ${theme.palette.codeHighlighter.languageBadgeText};
-    padding: ${theme.spacing(2)};
+    padding: 8px;
     position: absolute;
-    right: ${theme.spacing(3)};
+    right: 12px;
     text-transform: uppercase;
-    top: ${theme.spacing(3)};
+    top: 12px;
   `}
 `
 
 export const StyledLineContent = styled.span`
-  ${({ theme }) => css`
-    display: table-cell;
-    padding-right: ${theme.spacing(2)};
-  `}
+  display: table-cell;
+  padding-right: 8px;
 `
 
 export const StyledLineNumber = styled.span`
-  ${({ theme }) => css`
-    display: table-cell;
-    opacity: 0.5;
-    padding-right: ${theme.spacing(2)};
-    text-align: right;
-    user-select: none;
-  `}
+  display: table-cell;
+  opacity: 0.5;
+  padding-right: 8px;
+  text-align: right;
+  user-select: none;
 `
 
 export const StyledLineDecoration = styled.span`
@@ -46,7 +42,7 @@ export const StyledLineDecoration = styled.span`
 export const StyledLine = styled.div<StyledLineProps>`
   ${({ theme, isHighlighted }) => css`
     background-color: ${isHighlighted && theme.palette.codeHighlighter.lineHighlighted};
-    padding: ${theme.spacing(1)} ${theme.spacing(5)};
+    padding: 4px 20px;
     position: relative;
     width: 100%;
   `}
@@ -55,11 +51,11 @@ export const StyledLine = styled.div<StyledLineProps>`
 export const StyledCodeHighlighter = styled.pre`
   ${({ theme }) => css`
     background-color: ${theme.palette.codeHighlighter.background} !important;
-    border-radius: ${theme.bordering(3)};
+    border-radius: 12px;
     font-size: 2rem;
-    margin: ${theme.spacing(10)} 0;
+    margin: 40px 0;
     overflow: auto;
-    padding: ${theme.spacing(3)} 0;
+    padding: 12px 0;
     position: relative;
   `}
 `

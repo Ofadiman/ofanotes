@@ -57,5 +57,17 @@ export const GlobalStyle = createGlobalStyle`
     input {
       ${theme.typography.input}
     }
+
+    li {
+      ${theme.typography.li}
+    }
+
+    code {
+      ${theme.typography.code}
+    }
+
+    a {
+      ${theme.typography.a}
+    }
   `}
 `

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { StyledIconButtonProps } from './IconButton.types'
 
 export const StyledIconButton = styled.button<StyledIconButtonProps>`
-  ${({ theme, iconColor, iconHoverBackgroundColor, iconHoverColor }) => css`
+  ${({ iconColor, iconHoverBackgroundColor, iconHoverColor }) => css`
     align-items: center;
     background-color: transparent;
     border: none;
@@ -13,7 +13,7 @@ export const StyledIconButton = styled.button<StyledIconButtonProps>`
     justify-content: center;
     outline: none;
     overflow: hidden;
-    padding: ${theme.spacing(3)};
+    padding: 12px;
     position: relative;
 
     svg {

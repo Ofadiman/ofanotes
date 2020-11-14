@@ -1,10 +1,6 @@
 import { css, DefaultTheme } from 'styled-components'
 
-import { bordering } from '../functions/bordering'
-import { spacing } from '../functions/spacing'
-
 export const defaultTheme: DefaultTheme = {
-  bordering,
   mediaQueries: {
     below: {
       desktop: '@media(max-width: 1200px)',
@@ -47,23 +43,38 @@ export const defaultTheme: DefaultTheme = {
       highlight: 'hsl(265, 100%, 60%)'
     },
     typography: {
+      a: 'hsl(265, 100%, 40%)',
+      code: 'hsl(265, 50%, 20%)',
+      codeBackground: 'hsl(30, 70%, 95%)',
       main: 'hsl(0, 0%, 20%)'
     }
   },
-  spacing,
   typography: {
+    a: css`
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.a};
+      `}
+    `,
     body: css`
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-weight: normal;
       `}
     `,
     button: css`
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
-        font-size: 1.8rem;
+        font-size: 2rem;
         font-weight: normal;
+      `}
+    `,
+    code: css`
+      ${({ theme }) => css`
+        background-color: ${theme.palette.typography.codeBackground};
+        border-radius: 4px;
+        color: ${theme.palette.typography.code};
+        padding: 0 4px;
       `}
     `,
     h1: css`
@@ -72,7 +83,7 @@ export const defaultTheme: DefaultTheme = {
         font-size: 4rem;
         font-weight: normal;
         letter-spacing: 1px;
-        margin: ${theme.spacing(8)} 0;
+        padding: 3.2rem 0;
       `}
     `,
     h2: css`
@@ -80,7 +91,7 @@ export const defaultTheme: DefaultTheme = {
         color: ${theme.palette.typography.main};
         font-size: 2.8rem;
         font-weight: normal;
-        margin: ${theme.spacing(7)} 0;
+        padding: 2.8rem 0;
       `}
     `,
     h3: css`
@@ -89,7 +100,7 @@ export const defaultTheme: DefaultTheme = {
         font-size: 2.6rem;
         font-weight: normal;
         letter-spacing: 1px;
-        margin: ${theme.spacing(6)} 0;
+        padding: 2.4rem 0;
       `}
     `,
     h4: css`
@@ -97,7 +108,7 @@ export const defaultTheme: DefaultTheme = {
         color: ${theme.palette.typography.main};
         font-size: 2.4rem;
         font-weight: normal;
-        margin: ${theme.spacing(5)} 0;
+        padding: 2rem 0;
       `}
     `,
     h5: css`
@@ -105,7 +116,7 @@ export const defaultTheme: DefaultTheme = {
         color: ${theme.palette.typography.main};
         font-size: 2.2rem;
         font-weight: normal;
-        margin: ${theme.spacing(4)} 0;
+        padding: 1.6rem 0;
       `}
     `,
     h6: css`
@@ -113,7 +124,7 @@ export const defaultTheme: DefaultTheme = {
         color: ${theme.palette.typography.main};
         font-size: 2rem;
         font-weight: normal;
-        margin: ${theme.spacing(3)} 0;
+        padding: 1.2rem 0;
       `}
     `,
     input: css`
@@ -123,9 +134,16 @@ export const defaultTheme: DefaultTheme = {
         font-weight: normal;
       `}
     `,
+    li: css`
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.main};
+        padding: 4px 0;
+      `}
+    `,
     p: css`
       ${({ theme }) => css`
-        margin: ${theme.spacing(2)} 0;
+        color: ${theme.palette.typography.main};
+        padding: 8px 0;
       `}
     `
   },

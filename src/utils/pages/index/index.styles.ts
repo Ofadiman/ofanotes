@@ -1,17 +1,13 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const StyledMenuItemList = styled.ol`
-  ${({ theme }) => css`
-    display: grid;
-    grid-row-gap: ${theme.spacing(3)};
-    grid-template-columns: 1fr;
-  `}
+  display: grid;
+  grid-row-gap: 12px;
+  grid-template-columns: 1fr;
 `
 
 export const StyledIndexPage = styled.div`
-  ${({ theme }) => css`
-    display: grid;
-    grid-row-gap: ${theme.spacing(5)};
-    grid-template-columns: 1fr;
-  `}
+  display: grid;
+  grid-row-gap: 20px;
+  grid-template-columns: 1fr;
 `

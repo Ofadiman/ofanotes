@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const StyledIconCaption = styled.span`
   ${({ theme }) => css`
-    bottom: -${theme.spacing(7)};
+    bottom: -28px;
     color: ${theme.palette.footer.iconCaption};
     left: 50%;
     opacity: 0;
@@ -19,21 +19,19 @@ export const StyledIconCaption = styled.span`
 `
 
 export const StyledIconContainer = styled.div`
-  ${({ theme }) => css`
-    padding: 0 ${theme.spacing(5)};
-    position: relative;
+  padding: 0 20px;
+  position: relative;
 
-    svg {
-      height: 40px;
-      width: 40px;
-    }
+  svg {
+    height: 40px;
+    width: 40px;
+  }
 
-    &:hover {
-      ${StyledIconCaption} {
-        opacity: 1;
-      }
+  &:hover {
+    ${StyledIconCaption} {
+      opacity: 1;
     }
-  `}
+  }
 `
 
 export const StyledFooter = styled.footer`

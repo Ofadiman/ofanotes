@@ -10,7 +10,7 @@ export const StyledGithubIcon = styled(GithubIcon)`
 
 export const StyledHeaderTitle = styled.h1`
   ${({ theme }) => css`
-    border-radius: ${theme.bordering(3)};
+    border-radius: 12px;
     color: ${theme.palette.header.text};
     cursor: pointer;
     font-size: 2.2rem;
@@ -18,7 +18,7 @@ export const StyledHeaderTitle = styled.h1`
     height: fit-content;
     letter-spacing: 2px;
     overflow: hidden;
-    padding: ${theme.spacing(3)} ${theme.spacing(2)};
+    padding: 12px 8px;
     position: relative;
     text-transform: uppercase;
 
@@ -68,6 +68,6 @@ export const StyledHeader = styled.header`
     display: flex;
     height: 64px;
     justify-content: space-between;
-    padding: 0 ${theme.spacing(5)};
+    padding: 0 20px;
   `}
 `

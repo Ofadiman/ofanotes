@@ -2,7 +2,6 @@ import 'styled-components'
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    bordering: (borderingValue: number) => string
     mediaQueries: {
       below: {
         desktop: string
@@ -45,13 +44,17 @@ declare module 'styled-components' {
         highlight: string
       }
       typography: {
+        a: string
+        code: string
+        codeBackground: string
         main: string
       }
     }
-    spacing: (spacingValue: number) => string
     typography: {
+      a: FlattenInterpolation<ThemeProps<DefaultTheme>>
       body: FlattenInterpolation<ThemeProps<DefaultTheme>>
       button: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      code: FlattenInterpolation<ThemeProps<DefaultTheme>>
       h1: FlattenInterpolation<ThemeProps<DefaultTheme>>
       h2: FlattenInterpolation<ThemeProps<DefaultTheme>>
       h3: FlattenInterpolation<ThemeProps<DefaultTheme>>
@@ -59,6 +62,7 @@ declare module 'styled-components' {
       h5: FlattenInterpolation<ThemeProps<DefaultTheme>>
       h6: FlattenInterpolation<ThemeProps<DefaultTheme>>
       input: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      li: FlattenInterpolation<ThemeProps<DefaultTheme>>
       p: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     zIndex: {}

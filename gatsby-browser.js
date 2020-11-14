@@ -7,8 +7,8 @@ import { ThemeProvider } from 'styled-components'
 
 import { CodeHighlighter } from './src/components/CodeHighlighter/CodeHighlighter.component'
 import { Layout } from './src/layout/Layout.component'
+import { defaultTheme } from './src/styles/default.theme'
 import { GlobalStyle } from './src/styles/GlobalStyle'
-import { defaultTheme } from './src/styles/themes/default.theme'
 
 export const wrapRootElement = ({ element }) => (
   <>
