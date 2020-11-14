@@ -36,7 +36,7 @@ export const MenuItem: FC<MenuItemProps> = ({ highlight, tags, text, className, 
   }
 
   return (
-    <StyledLink className={className} hue={hue} to={to}>
+    <StyledLink className={className} href={to} hue={hue}>
       <MainIcon />
       <StyledMenuItemText>{renderMenuItemText()}</StyledMenuItemText>
       {restIcons.map(({ Icon, id }) => (

@@ -15,6 +15,7 @@ export const StyledRippleEffect = styled.span<StyledRippleEffectProps>`
     top: ${offsetTop}px;
     transform: scale(0);
     width: ${size}px;
+    z-index: -1;
 
     @keyframes ripple {
       to {

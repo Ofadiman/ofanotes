@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 import { ThemeProvider } from 'styled-components'
 
 import { CodeHighlighter } from './src/components/CodeHighlighter/CodeHighlighter.component'
+import { Link } from './src/components/Link/Link.component'
 import { Layout } from './src/layout/Layout.component'
 import { defaultTheme } from './src/styles/default.theme'
 import { GlobalStyle } from './src/styles/GlobalStyle'
@@ -19,12 +20,12 @@ export const wrapRootElement = ({ element }) => (
         }
         rel={'stylesheet'}
       />
-      <style>{`.token: { color: 'red' }`}</style>
     </Helmet>
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
       <MDXProvider
         components={{
+          a: Link,
           pre: (preProps) => {
             const props = preToCodeBlock(preProps)
             if (props) {

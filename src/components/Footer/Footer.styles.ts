@@ -1,5 +1,11 @@
 import styled, { css } from 'styled-components'
 
+import { Link } from '../Link/Link.component'
+
+export const StyledFooterLink = styled(Link)`
+  margin: 0 20px;
+`
+
 export const StyledIconCaption = styled.span`
   ${({ theme }) => css`
     bottom: -28px;
@@ -19,7 +25,6 @@ export const StyledIconCaption = styled.span`
 `
 
 export const StyledIconContainer = styled.div`
-  padding: 0 20px;
   position: relative;
 
   svg {

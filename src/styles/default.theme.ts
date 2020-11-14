@@ -22,13 +22,12 @@ export const defaultTheme: DefaultTheme = {
     },
     footer: {
       decoration: 'hsl(0, 0%, 80%)',
-      iconCaption: 'hsl(0, 0%, 30%)'
+      iconCaption: 'hsl(0, 0%, 30%)',
+      ripple: 'hsl(265, 0%, 90%)'
     },
     header: {
       backgroundDark: 'hsl(265, 100%, 55%)',
       backgroundLight: 'hsl(265, 100%, 65%)',
-      iconHoverBackground: 'hsla(265, 100%, 90%, 10%)',
-      ripple: 'hsl(265, 0%, 80%)',
       text: 'hsl(265, 100%, 100%)',
       textHover: 'hsla(265, 100%, 90%)'
     },
@@ -43,7 +42,7 @@ export const defaultTheme: DefaultTheme = {
       highlight: 'hsl(265, 100%, 60%)'
     },
     typography: {
-      a: 'hsl(265, 100%, 40%)',
+      anchorHover: 'hsl(265, 100%, 50%)',
       code: 'hsl(265, 50%, 20%)',
       codeBackground: 'hsl(30, 70%, 95%)',
       main: 'hsl(0, 0%, 20%)'
@@ -52,7 +51,10 @@ export const defaultTheme: DefaultTheme = {
   typography: {
     a: css`
       ${({ theme }) => css`
-        color: ${theme.palette.typography.a};
+        color: ${theme.palette.typography.main};
+        &:hover {
+          color: ${theme.palette.typography.anchorHover};
+        }
       `}
     `,
     body: css`

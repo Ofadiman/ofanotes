@@ -24,12 +24,11 @@ declare module 'styled-components' {
       footer: {
         decoration: string
         iconCaption: string
+        ripple: string
       }
       header: {
         backgroundDark: string
         backgroundLight: string
-        iconHoverBackground: string
-        ripple: string
         text: string
         textHover: string
       }
@@ -44,7 +43,7 @@ declare module 'styled-components' {
         highlight: string
       }
       typography: {
-        a: string
+        anchorHover: string
         code: string
         codeBackground: string
         main: string

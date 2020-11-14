@@ -1,4 +1,8 @@
 export interface LinkProps {
   className?: string
-  to: string
+  href: string
+}
+
+export interface StyledLinkProps {
+  isOnResourcePage?: boolean
 }

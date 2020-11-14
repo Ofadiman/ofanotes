@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     html {
       font-size: 62.5%;
       font-family: Roboto, sans-serif;
-      line-height: 1.2;
+      line-height: 1.4;
     }
 
     body {
