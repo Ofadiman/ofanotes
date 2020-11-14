@@ -28,6 +28,8 @@ export const StyledInput = styled.input`
   border: none;
   height: 100%;
   outline: none;
+  padding-left: 4px;
+  padding-right: 24px;
   width: 100%;
 `
 
@@ -36,6 +38,7 @@ export const StyledInputLabel = styled.label<StyledInputLabelProps>`
     color: ${theme.palette.input.label};
     cursor: text;
     font-size: 1.8rem;
+    left: 4px;
     position: absolute;
     top: ${isActive ? '0' : '50%'};
     transform: translateY(-50%) ${isActive ? 'scale(0.6)' : 'scale(1)'};
@@ -62,6 +65,9 @@ export const StyledInputWrapper = styled.div`
     svg {
       fill: ${theme.palette.input.icon};
       height: 16px;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
       width: 16px;
     }
   `}
