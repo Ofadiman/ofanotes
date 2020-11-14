@@ -1,31 +1,26 @@
 import { graphql, PageProps } from 'gatsby'
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import SearchSvg from '../assets/icons/search.inline.svg'
 import { Input } from '../components/Input/Input.component'
 import { MenuItem } from '../components/MenuItem/MenuItem.component'
 import { StyledIndexPage, StyledMenuItemList } from '../utils/pages/index/index.styles'
 import { HomePageQueryResult } from '../utils/pages/index/index.types'
-import { filterMenuItems, howToMenuItemRegex, otherMenuItemRegex } from '../utils/pages/index/index.utils'
+import { filterMenuItems } from '../utils/pages/index/index.utils'
 
 export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Element {
-  const initialHowToMenuItemsRef = useRef(filterMenuItems(howToMenuItemRegex, data.allMdx.edges))
-  const initialOtherMenuItemsRef = useRef(filterMenuItems(otherMenuItemRegex, data.allMdx.edges))
-  const [filteredHowToMenuItems, setFilteredHowToMenuItems] = useState(initialHowToMenuItemsRef.current)
-  const [filteredOtherMenuItems, setFilteredOtherMenuItems] = useState(initialOtherMenuItemsRef.current)
+  const [filteredMenuItems, setFilteredMenuItems] = useState(data.allMdx.edges)
   const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
     if (searchValue.trim() === '') {
-      setFilteredHowToMenuItems(initialHowToMenuItemsRef.current)
-      setFilteredOtherMenuItems(initialOtherMenuItemsRef.current)
+      setFilteredMenuItems(data.allMdx.edges)
     } else {
       const currentSearchRegex = new RegExp(searchValue.trim(), 'i')
 
-      setFilteredHowToMenuItems(filterMenuItems(currentSearchRegex, initialHowToMenuItemsRef.current))
-      setFilteredOtherMenuItems(filterMenuItems(currentSearchRegex, initialOtherMenuItemsRef.current))
+      setFilteredMenuItems(filterMenuItems(currentSearchRegex, data.allMdx.edges))
     }
-  }, [searchValue])
+  }, [data.allMdx.edges, searchValue])
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(event.target.value)
@@ -34,29 +29,22 @@ export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Elem
   return (
     <StyledIndexPage>
       <h1>{'Welcome to Ofanotes!'}</h1>
-      <Input Icon={SearchSvg} label={'Search...'} onChange={handleInputChange} type={'text'} value={searchValue} />
-      <h3>{'How to'}</h3>
+      <Input
+        Icon={SearchSvg}
+        label={`I'm looking for...`}
+        onChange={handleInputChange}
+        type={'text'}
+        value={searchValue}
+      />
       <StyledMenuItemList>
-        {filteredHowToMenuItems.length === 0 ? (
-          <h6>{'There are not matches for your query'}</h6>
+        {filteredMenuItems.length === 0 ? (
+          <h6>
+            {'Unfortunately, nothing covers '}
+            <code>{searchValue}</code>
+            {' yet.'}
+          </h6>
         ) : (
-          filteredHowToMenuItems.map(({ node }) => (
-            <MenuItem
-              highlight={searchValue}
-              key={node.slug}
-              tags={node.frontmatter.tags}
-              text={node.frontmatter.title}
-              to={`/notes/${node.slug}/`}
-            />
-          ))
-        )}
-      </StyledMenuItemList>
-      <h3>{'Others'}</h3>
-      <StyledMenuItemList>
-        {filteredOtherMenuItems.length === 0 ? (
-          <h6>{'There are not matches for your query'}</h6>
-        ) : (
-          filteredOtherMenuItems.map(({ node }) => (
+          filteredMenuItems.map(({ node }) => (
             <MenuItem
               highlight={searchValue}
               key={node.slug}

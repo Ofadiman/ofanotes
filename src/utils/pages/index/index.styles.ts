@@ -4,6 +4,7 @@ export const StyledMenuItemList = styled.ol`
   display: grid;
   grid-row-gap: 12px;
   grid-template-columns: 1fr;
+  margin-top: 40px;
 `
 
 export const StyledIndexPage = styled.div`
