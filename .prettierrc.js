@@ -5,5 +5,13 @@ module.exports = {
   singleQuote: true,
   quoteProps: 'consistent',
   tabWidth: 2,
-  trailingComma: 'none'
+  trailingComma: 'none',
+  overrides: [
+    {
+      files: ['src/pages/notes/*'],
+      options: {
+        printWidth: 80,
+      }
+    }
+  ]
 }

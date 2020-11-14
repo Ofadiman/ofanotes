@@ -9,23 +9,66 @@ tags:
 
 # How to use React context API
 
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 
+## Creating a context
 
-```tsx [5-7]
-import styled from 'styled-components'
-import { FC } from 'react'
-import { Link } from 'gatsby'
+1. Define the shape of your context with `UserContextValue` type.
+2. Create the contexts itself with `createContext` function.
+3. Add a `displayName` to the context object.
+4. Create the `useUserContext` hook for consuming the context.
+5. Create the `<UserContextProvider />` which wraps any part of an application that needs to access the context value.
+6. Create a helper functions (such as `updateUser`) responsible for updating the context.
 
-const StyledButton = styled.button`
-  color: palevioletred;
-  border-radius: 3px;
-`
+```tsx
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useState
+} from 'react'
 
-export const SomeComponent: FC = ({ children }) => {
+type UserContextValue = [
+  state: string,
+  dispatch: Dispatch<SetStateAction<string>>
+]
+
+const UserContext = createContext<UserContextValue | null>(null)
+
+UserContext.displayName = 'UserContext'
+
+export const useUserContext = (): UserContextValue => {
+  const userContextValue = useContext(UserContext)
+
+  if (userContextValue === null) {
+    throw new Error(
+      `"useUserContext" must be used within a UserContextProvider!`
+    )
+  }
+
+  return userContextValue
+}
+
+export const UserContextProvider: FCC = ({ children }) => {
+  const [name, setName] = useState<string>('')
+
   return (
-    <StyledButton as={Link} href={'/home'}>
+    <UserContext.Provider value={[name, setName]}>
       {children}
-    </StyledButton>
+    </UserContext.Provider>
   )
 }
+
+export const updateUser = (
+  dispatch: Dispatch<SetStateAction<string>>,
+  newName: string
+): void => {
+  dispatch(newName)
+}
 ```
+
+- React uses `Object.is` algorithm to determine if the context value has changed.
+- Until [babel-plugin-add-react-displayname](https://github.com/opbeat/babel-plugin-add-react-displayname) starts adding `displayName` to context objects automatically, we have to do this manually to have a better visual output in ReactDevTools.
+- `useUserContext` validates access to the context value, and throws a helpful error when you forget to wrap your component with `UserContextProvider`.
+- Helper functions (such as `updateUser`) are created outside the `UserContextProvider` closure, to optimize performance by avoid `useCallback` hooks. This is what Facebook does.
