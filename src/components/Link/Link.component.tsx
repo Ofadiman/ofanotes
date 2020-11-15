@@ -1,3 +1,4 @@
+import { globalHistory } from '@reach/router'
 import React from 'react'
 
 import { StyledGatsbyLink, StyledLink } from './Link.styles'
@@ -6,7 +7,6 @@ import { LinkProps } from './Link.types'
 export const Link: FCC<LinkProps> = ({ children, href, className }) => {
   const isInternalLink = href.startsWith('/')
   const isOnPageLink = href.startsWith('#')
-  const isOnResourcePage = window.location.pathname === '/notes/programming-resources/'
 
   if (isInternalLink) {
     return (
@@ -28,7 +28,7 @@ export const Link: FCC<LinkProps> = ({ children, href, className }) => {
     <StyledLink
       className={className}
       href={href}
-      isOnResourcePage={isOnResourcePage}
+      isOnResourcePage={globalHistory.location.pathname === '/notes/programming-resources/'}
       rel={'noopener noreferrer'}
       target={'_blank'}
     >
