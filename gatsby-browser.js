@@ -11,7 +11,7 @@ import { Layout } from './src/layout/Layout.component'
 import { defaultTheme } from './src/styles/default.theme'
 import { GlobalStyle } from './src/styles/GlobalStyle'
 
-export const wrapRootElement = ({ element }) => (
+export const wrapPageElement = ({ element }) => (
   <>
     <Helmet>
       <link
