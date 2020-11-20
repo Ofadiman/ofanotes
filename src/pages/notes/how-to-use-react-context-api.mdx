@@ -72,3 +72,33 @@ export const updateUser = (
 - Until [babel-plugin-add-react-displayname](https://github.com/opbeat/babel-plugin-add-react-displayname) starts adding `displayName` to context objects automatically, we have to do this manually to have a better visual output in ReactDevTools.
 - `useUserContext` validates access to the context value, and throws a helpful error when you forget to wrap your component with `UserContextProvider`.
 - Helper functions (such as `updateUser`) are created outside the `UserContextProvider` closure, to optimize performance by avoid `useCallback` hooks. This is what Facebook does.
+
+## Avoiding unnecessary re-renders
+
+In techniques like [compound components](https://kentcdodds.com/blog/compound-components-with-react-hooks) you may want to use context to pass data around related components. In this case, it might be beneficial to memoize the context value with `useMemo()` hook. That is because, when the parent of `<ContextProvider />` re-renders, the provider will be recreated with a new context value.
+
+```tsx
+export const ContextProvider = () => {
+  const [mode, setMode] = useState<'dark' | 'light'>('dark')
+  const [type, setType] = useState<'compact' | 'normal'>()
+
+  const value = useMemo(
+    () => ({
+      mode,
+      setMode,
+      type,
+      setType
+    }),
+    [mode, setMode, type, setType]
+  )
+
+  return <Context.Provider value={value}>{children}</Context.Provider>
+}
+```
+
+#### References
+
+- [Kent C. Dodds's blog post about optimizing context](https://kentcdodds.com/blog/how-to-optimize-your-context-value)
+- [Kent C. Dodds's blog post about using context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
+- [React context API documentation](https://reactjs.org/docs/context.html)
+- [Thomas Juster's blog post about optimizing context](https://levelup.gitconnected.com/react-how-i-learned-to-create-optimized-contexts-e121dc232a95)
