@@ -13,7 +13,7 @@
     "build": "gatsby build",
     "check:typescript": "tsc --build tsconfig.json",
     "clean": "gatsby clean",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "eslint:find:deprecated": "eslint-find-rules --deprecated --no-error .eslintrc.js",
     "eslint:find:unused": "eslint-find-rules --unused --no-error .eslintrc.js",
     "gen": "plop",

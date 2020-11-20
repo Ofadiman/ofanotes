@@ -14,7 +14,7 @@ export const Footer: FC<FooterProps> = ({ className }) => {
       {footerConst.map(({ caption, Icon, to }) => (
         <StyledFooterLink href={to} key={to}>
           <StyledIconContainer>
-            <IconButton rippleColor={theme.palette.footer.ripple}>
+            <IconButton rippleColor={theme.palette.footer.ripple} tabIndex={-1}>
               <Icon />
             </IconButton>
             <StyledIconCaption>{caption}</StyledIconCaption>

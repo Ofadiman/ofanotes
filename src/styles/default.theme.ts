@@ -20,6 +20,9 @@ export const defaultTheme: DefaultTheme = {
       lineDecorator: 'hsl(265, 100%, 70%)',
       lineHighlighted: 'hsl(0, 0%, 18%)'
     },
+    divider: {
+      background: 'hsl(0, 0%, 90%)'
+    },
     footer: {
       decoration: 'hsl(0, 0%, 80%)',
       iconCaption: 'hsl(0, 0%, 30%)',
@@ -44,8 +47,9 @@ export const defaultTheme: DefaultTheme = {
     typography: {
       anchorHover: 'hsl(265, 100%, 50%)',
       code: 'hsl(265, 50%, 20%)',
-      codeBackground: 'hsl(30, 70%, 95%)',
-      main: 'hsl(0, 0%, 20%)'
+      codeBackground: 'hsl(30, 70%, 92%)',
+      main: 'hsl(0, 0%, 20%)',
+      strong: 'hsl(265, 50%, 50%)'
     }
   },
   typography: {
@@ -91,9 +95,9 @@ export const defaultTheme: DefaultTheme = {
     h2: css`
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
-        font-size: 2.8rem;
+        font-size: 3.2rem;
         font-weight: normal;
-        padding: 2.8rem 0;
+        padding: 6rem 0 3rem;
       `}
     `,
     h3: css`
@@ -146,6 +150,11 @@ export const defaultTheme: DefaultTheme = {
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
         padding: 8px 0;
+      `}
+    `,
+    strong: css`
+      ${({ theme }) => css`
+        color: ${theme.palette.typography.strong};
       `}
     `
   },

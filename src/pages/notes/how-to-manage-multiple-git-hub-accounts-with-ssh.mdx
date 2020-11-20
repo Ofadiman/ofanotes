@@ -7,4 +7,71 @@ tags:
 
 # How to manage multiple GitHub accounts with SSH
 
-This is the very beginning of "How to manage multiple GitHub accounts with SSH".
+SSH stands for secure shell. It is a remote administration protocol that allows users to control and modify their remote servers over the internet. It provides a mechanism for authenticating a remote user, transferring inputs from the client to the host, and relaying the output back to the client. You can execute shell commands in the same manner as you would if you were physically operating the remote computer. SSH supports several public key algorithms for authentication keys i.e. `rsa`, `dsa`, `ecdsa` and `ed25519`.
+
+## The ssh command
+
+The `ssh` command consists of 3 distinct parts and instructs your system that you want to open an encrypted Secure Shell Connection.
+
+```shell script
+$ ssh {user}@{host}
+```
+
+In the example above, `{user}` represents the account you want to access. For example, you may want to access the root user, which is basically synonymous for system administrator with complete rights to modify anything on the system. `{host}` refers to the computer you want to access. This can be an IP Address (e.g. 244.235.23.19), or a domain name (e.g. https://ofanotes.netlify.app/).
+
+## The ssh-keygen command
+
+The `ssh-keygen` is a command for creating new authentication key pairs for SSH. Such key pairs are used for automating logins, single sign-on, and for authenticating hosts.
+
+Some command options are:
+
+- `-C "<comment>"` - Specify a comment stored in the newly generated file.
+- `-F <host-name>` - Search for specified host name in the `known_hosts` file.
+- `-b <nubmer-of-bits>` - Specify the number of bits in a key. For the `rsa` algorithm the recommended number is 4096.
+- `-f <file-name>` - Specify the file name for a new SSH key.
+- `-t <type-of-algorithm>` - Specify the type of algorithm to be used while generating a new SSH key.
+
+## Adding ssh keys
+
+1. Create a new SSH key pairs.
+2. Check for saved keys.
+3. If the key hasn't been automatically added to `ssh-agent`, add it via `ssh-add` command.
+
+```shell script
+$ ssh-keygen -t rsa -b 4096 -C "https://github.com/username"
+$ ssh-add -l
+$ ssh-add ~/.ssh/id_rsa
+```
+
+The `id_rsa` is going to be the default key used for every ssh connection with remote servers.
+
+## Managing multiple GitHub accounts
+
+1. Create a new key pairs with the name of _id_rsa_company_name_.
+2. Modify or create `~/.ssh/config` file.
+
+```
+Host host_name
+   HostName github.com
+   IdentityFile ~/.ssh/id_rsa_host_name
+   User git
+```
+
+3. Clone the repository with the following command.
+
+```shell script
+$ git clone git@github-host_name:username/repository.git
+```
+
+4. If you've already cloned a repository before, you can change its origin url.
+
+```shell script
+$ git remote set-url origin git@host_name:username/repository.git
+```
+
+## References
+
+- [Command line options for ssh-keygen](https://linux.die.net/man/1/ssh-keygen)
+- [Connecting to GitHub with ssh](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh)
+- [How does SSH work](https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work)
+- [What is ssh-keygen](https://www.ssh.com/ssh/keygen/)

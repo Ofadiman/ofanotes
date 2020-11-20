@@ -28,7 +28,7 @@ export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Elem
 
   return (
     <StyledIndexPage>
-      <h1>{'Welcome to Ofanotes!'}</h1>
+      <h1>{`You can't remember everything, but You can note it.`}</h1>
       <Input
         Icon={SearchSvg}
         label={`I'm looking for...`}

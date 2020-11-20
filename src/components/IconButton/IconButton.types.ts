@@ -6,6 +6,7 @@ export interface IconButtonProps {
   onClick?: () => void
   rippleColor?: string
   rippleDuration?: number
+  tabIndex?: number
 }
 
 export interface StyledIconButtonProps

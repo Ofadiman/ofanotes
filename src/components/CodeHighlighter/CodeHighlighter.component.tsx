@@ -22,7 +22,9 @@ export const CodeHighlighter: FC<CodeHighlighterProps> = ({ codeString, language
     <Highlight {...defaultProps} code={codeString} language={language} theme={nightOwlTheme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <StyledCodeHighlighter className={className} style={style}>
-          <StyledLanguageBadge>{language}</StyledLanguageBadge>
+          {/* Language might be empty when not specified in metastring. */}
+          {/* @ts-expect-error */}
+          {language !== '' && <StyledLanguageBadge>{language}</StyledLanguageBadge>}
           {tokens.map((line, index) => {
             return (
               <StyledLine

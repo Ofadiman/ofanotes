@@ -21,6 +21,9 @@ declare module 'styled-components' {
         lineDecorator: string
         lineHighlighted: string
       }
+      divider: {
+        background: string
+      }
       footer: {
         decoration: string
         iconCaption: string
@@ -47,6 +50,7 @@ declare module 'styled-components' {
         code: string
         codeBackground: string
         main: string
+        strong: string
       }
     }
     typography: {
@@ -63,6 +67,7 @@ declare module 'styled-components' {
       input: FlattenInterpolation<ThemeProps<DefaultTheme>>
       li: FlattenInterpolation<ThemeProps<DefaultTheme>>
       p: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      strong: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     zIndex: {}
   }

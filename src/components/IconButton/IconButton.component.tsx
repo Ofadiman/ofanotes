@@ -12,7 +12,8 @@ export const IconButton: FCC<IconButtonProps> = ({
   iconColor,
   rippleColor,
   iconHoverBackgroundColor,
-  iconHoverColor
+  iconHoverColor,
+  tabIndex
 }) => (
   <StyledIconButton
     className={className}
@@ -20,6 +21,7 @@ export const IconButton: FCC<IconButtonProps> = ({
     iconHoverBackgroundColor={iconHoverBackgroundColor}
     iconHoverColor={iconHoverColor}
     onClick={onClick}
+    tabIndex={tabIndex}
   >
     {children}
     <RippleEffect color={rippleColor} duration={rippleDuration} />
