@@ -7,21 +7,31 @@ export const StyledLanguageBadge = styled.span`
     background-color: ${theme.palette.codeHighlighter.languageBadge};
     border-radius: 12px;
     color: ${theme.palette.codeHighlighter.languageBadgeText};
+    font-size: 1.2rem;
+    letter-spacing: 1px;
     padding: 8px;
     position: absolute;
-    right: 12px;
+    right: 0;
     text-transform: uppercase;
-    top: 12px;
+    top: 0;
+    transform: translate(50%, -50%);
+    z-index: 1;
+
+    ${theme.mediaQueries.up.tablet} {
+      transform: translate(37.5%, -37.5%);
+    }
+
+    ${theme.mediaQueries.up.desktop} {
+      transform: translate(25%, -25%);
+    }
   `}
 `
 
 export const StyledLineContent = styled.span`
-  display: table-cell;
   padding-right: 8px;
 `
 
 export const StyledLineNumber = styled.span`
-  display: table-cell;
   opacity: 0.5;
   padding-right: 8px;
   text-align: right;
@@ -40,11 +50,12 @@ export const StyledLineDecoration = styled.span`
 `
 
 export const StyledLine = styled.div<StyledLineProps>`
-  ${({ theme, isHighlighted }) => css`
+  ${({ theme, isHighlighted, width }) => css`
     background-color: ${isHighlighted && theme.palette.codeHighlighter.lineHighlighted};
+    min-width: 100%;
     padding: 4px 20px;
     position: relative;
-    width: 100%;
+    width: ${width}px;
   `}
 `
 
@@ -56,6 +67,9 @@ export const StyledCodeHighlighter = styled.pre`
     margin: 40px 0;
     overflow: auto;
     padding: 12px 0;
-    position: relative;
   `}
+`
+
+export const StyledCodeHighlighterWrapper = styled.div`
+  position: relative;
 `

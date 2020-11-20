@@ -5,3 +5,7 @@ export interface LayoutQueryResult {
     }
   }
 }
+
+export interface StyledMainProps {
+  width: number | null
+}
