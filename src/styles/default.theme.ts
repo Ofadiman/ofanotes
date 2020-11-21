@@ -31,6 +31,7 @@ export const defaultTheme: DefaultTheme = {
     header: {
       backgroundDark: 'hsl(265, 100%, 55%)',
       backgroundLight: 'hsl(265, 100%, 65%)',
+      shadow: 'hsl(265, 0%, 70%)',
       text: 'hsl(265, 100%, 100%)',
       textHover: 'hsla(265, 100%, 90%)'
     },
@@ -158,5 +159,7 @@ export const defaultTheme: DefaultTheme = {
       `}
     `
   },
-  zIndex: {}
+  zIndex: {
+    header: 1000
+  }
 }

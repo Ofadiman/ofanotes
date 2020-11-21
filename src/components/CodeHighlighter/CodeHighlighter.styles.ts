@@ -14,15 +14,15 @@ export const StyledLanguageBadge = styled.span`
     right: 0;
     text-transform: uppercase;
     top: 0;
-    transform: translate(50%, -50%);
+    transform: translate(15px, -50%);
     z-index: 1;
 
     ${theme.mediaQueries.up.tablet} {
-      transform: translate(37.5%, -37.5%);
+      transform: translate(15px, -37.5%);
     }
 
     ${theme.mediaQueries.up.desktop} {
-      transform: translate(25%, -25%);
+      transform: translate(15px, -25%);
     }
   `}
 `

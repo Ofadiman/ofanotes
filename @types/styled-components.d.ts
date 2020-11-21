@@ -32,6 +32,7 @@ declare module 'styled-components' {
       header: {
         backgroundDark: string
         backgroundLight: string
+        shadow: string
         text: string
         textHover: string
       }
@@ -69,6 +70,8 @@ declare module 'styled-components' {
       p: FlattenInterpolation<ThemeProps<DefaultTheme>>
       strong: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
-    zIndex: {}
+    zIndex: {
+      header: number
+    }
   }
 }

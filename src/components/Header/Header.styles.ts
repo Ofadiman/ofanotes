@@ -65,9 +65,11 @@ export const StyledHeader = styled.header`
         rgba(152, 152, 152, 0.05) 100%
       ),
       linear-gradient(90deg, ${theme.palette.header.backgroundLight}, ${theme.palette.header.backgroundDark});
+    box-shadow: 0 0 5px 2px ${theme.palette.header.shadow};
     display: flex;
     height: 64px;
     justify-content: space-between;
     padding: 0 20px;
+    z-index: ${theme.zIndex.header};
   `}
 `

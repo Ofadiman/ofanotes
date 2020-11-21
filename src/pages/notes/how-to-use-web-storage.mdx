@@ -1,0 +1,161 @@
+---
+title: How to use web storage
+createdAt: 2020-11-21T12:43:30.056Z
+tags:
+  - JavaScript
+  - TypeScript
+---
+
+# How to use web storage
+
+The Web Storage API provides mechanisms by which browsers can store key/value pairs. The two mechanisms within Web Storage are `sessionStorage` and `localStorage`.
+
+## Abstracting away storage operations
+
+To facilitate the use of browser storage API, I like to create a simple abstraction over it. The `BaseStorage` class is responsible for handling read and write operations as well as errors.
+
+```typescript
+export class BaseStorage {
+  private readonly storage: Storage
+
+  public constructor(storage: Storage) {
+    this.storage = storage
+  }
+
+  public get length(): number {
+    return this.storage.length
+  }
+
+  public clear(): void {
+    this.storage.clear()
+  }
+
+  public getItem<T>(key: string): T | null {
+    const item = this.storage.getItem(key)
+
+    if (item === null) {
+      return null
+    }
+
+    return JSON.parse(item) as T
+  }
+
+  public removeItem(key: string): void {
+    this.storage.removeItem(key)
+  }
+
+  public setItem(key: string, item: unknown): boolean {
+    try {
+      this.storage.setItem(key, JSON.stringify(item))
+    } catch {
+      return false
+    }
+
+    return true
+  }
+
+  public key(index: number): string | null {
+    return this.storage[index] as string | null
+  }
+}
+```
+
+- `getItem` method must check if the item returned from local storage is not null, because `JSON.parse()` method takes a string.
+- `setItem` method provided by storage API must be wrapped in `try {} catch {}` block, because if the storage is full, it will throw an error. Additionally, in Mobile Safari (since iOS 5) it always throws when the user enters the private mode. More about that [here](https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem).
+
+The `WebStorage` class is the one, that I actually want to use in an application. It provides interfaces for managing both types of web storage.
+
+```typescript
+export class WebStorage {
+  public static local: Storage = new BaseStorage(window.localStorage)
+  public static session: Storage = new BaseStorage(window.sessionStorage)
+}
+```
+
+## Testing
+
+Tests for `BaseStorage` class look like that.
+
+```typescript
+import { BaseStorage } from './BaseStorage'
+
+const firstItemKey = 'firstItemKey'
+const firstItemValue = { foo: 1 }
+const secondItemKey = 'secondItemKey'
+const secondItemValue = { bar: { buzz: 'buzz' } }
+const thirdItemKey = 'thirdItemKey'
+const thirdItemValue = { data: ['one', 'two', 'three'] }
+
+describe('BaseStorage class', () => {
+  const storage = new BaseStorage(window.localStorage)
+
+  beforeEach(() => {
+    window.localStorage.setItem(firstItemKey, JSON.stringify(firstItemValue))
+    window.localStorage.setItem(secondItemKey, JSON.stringify(secondItemValue))
+  })
+
+  afterEach(() => {
+    window.localStorage.clear()
+  })
+
+  test('get item from local storage', () => {
+    const item = storage.getItem(firstItemKey)
+
+    expect(item).toEqual(firstItemValue)
+  })
+
+  test('get item from local storage by not existing key', () => {
+    const item = storage.getItem('definitely-not-in-storage')
+
+    expect(item).toBeNull()
+  })
+
+  test('set item in local storage', () => {
+    const isSuccessful = storage.setItem(thirdItemKey, thirdItemValue)
+    const item = storage.getItem(thirdItemKey)
+
+    expect(item).toEqual(thirdItemValue)
+    expect(isSuccessful).toEqual(true)
+  })
+
+  test('something goes wrong while setting item in local storage', () => {
+    jest.spyOn(localStorage, 'setItem').mockImplementationOnce(() => {
+      throw new Error('Something went wrong!')
+    })
+
+    const isSuccessful = storage.setItem(thirdItemKey, thirdItemValue)
+    expect(isSuccessful).toEqual(false)
+  })
+
+  test('remove item from local storage', () => {
+    storage.removeItem(firstItemKey)
+
+    expect(localStorage).toEqual({ 'second-item': '{"bar":{"buzz":"buzz"}}' })
+  })
+
+  test('get local storage length', () => {
+    const length = storage.length
+
+    expect(length).toEqual(2)
+  })
+
+  test('get key at specified index from local storage', () => {
+    const key = storage.key(0)
+
+    expect(key).toEqual(firstItemKey)
+  })
+
+  test('clear local storage', () => {
+    storage.clear()
+
+    expect(localStorage).toEqual({})
+  })
+})
+```
+
+- In order to test `BaseStorage` class make sure you have [jest-localstorage-mock](https://www.npmjs.com/package/jest-localstorage-mock) package installed and initialized.
+
+## References
+
+- [Mocking storage API in Jest.](https://github.com/clarkbw/jest-localstorage-mock)
+- [Storage API docs by MDN.](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
