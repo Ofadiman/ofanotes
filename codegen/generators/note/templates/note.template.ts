@@ -9,7 +9,7 @@ tags:
 {{/ each }}
 ---
 
-# {{ ${noteConst.vars.title} }}
+# {{ ${noteConst.vars.title} }} [{{ ${noteConst.vars.shortDate} }}]
 
 This is the very beginning of "{{ ${noteConst.vars.title} }}".
 `

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-import { Icons } from '../../utils/const/Icons.map'
+import { icons } from '../../utils/const/icons.map'
 import { getIconFromIconsMapByTag } from '../../utils/functions/getIconFromIconsMapByTag'
 import { getRandomIntegerInRange } from '../../utils/functions/getRandomIntegerInRange'
 import { RippleEffect } from '../RippleEffect/RippleEffect.component'
@@ -10,7 +10,7 @@ import { MenuItemProps } from './MenuItem.types'
 export const MenuItem: FC<MenuItemProps> = ({ highlight, tags, text, className, to, minHue = 250, maxHue = 280 }) => {
   const hue = getRandomIntegerInRange(minHue, maxHue)
   const [{ Icon: MainIcon }, ...restIcons] = tags.map((tag) => ({
-    Icon: getIconFromIconsMapByTag(Icons, tag),
+    Icon: getIconFromIconsMapByTag(icons, tag),
     id: tag
   }))
 

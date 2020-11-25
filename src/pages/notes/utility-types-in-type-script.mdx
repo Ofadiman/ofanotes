@@ -1,0 +1,40 @@
+---
+title: Utility types in TypeScript
+createdAt: 2020-11-25T07:56:05.469Z
+tags:
+  - TypeScript
+---
+
+# Utility types in TypeScript [2020-11-25]
+
+---
+
+- [Partial](#Partial) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Readonly](#Readonly) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Record](#Record) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+
+---
+
+## `Partial`
+
+Constructs a type with all properties of `Type` set to optional. This utility will return a type that represents all subsets of a given type.
+
+```typescript
+type Partial<Type> = { [Key in keyof Type]?: Type[Key] }
+```
+
+## `Readonly`
+
+Constructs a type with all properties of `Type` set to readonly, meaning the properties of the constructed type cannot be reassigned.
+
+```typescript
+type Readonly<Type> = { readonly [Key in keyof Type]: Type[Key] }
+```
+
+## `Record`
+
+Constructs a type with a set of properties `Keys` of type `Type`. This utility can be used to map the properties of a type to another type.
+
+```typescript
+type Record<Key extends keyof any, Type> = { [P in Key]: Type }
+```

@@ -43,6 +43,10 @@ declare module 'styled-components' {
         icon: string
         label: string
       }
+      mdxHeading: {
+        svg: string
+        svgHover: string
+      }
       menuItem: {
         highlight: string
       }
@@ -50,6 +54,7 @@ declare module 'styled-components' {
         anchorHover: string
         code: string
         codeBackground: string
+        light: string
         main: string
         strong: string
       }
