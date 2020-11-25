@@ -18,7 +18,7 @@ export const StyledMain = styled.main<StyledMainProps>`
     margin: 40px auto 120px;
     max-width: 1000px;
     position: relative;
-    width: ${width === null ? undefined : `${width - 80}px`};
+    width: ${width !== null && `${width - 80}px`};
 
     #gatsby-focus-wrapper {
       display: flex;
