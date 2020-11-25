@@ -7,6 +7,8 @@ import { ThemeProvider } from 'styled-components'
 import { CodeHighlighter } from '../components/CodeHighlighter/CodeHighlighter.component'
 import { Divider } from '../components/Divider/Divider.component'
 import { Link } from '../components/Link/Link.component'
+import { createMDXHeading } from '../components/MDXHeading/MDXHeading.component'
+import { MDXHeadingOne } from '../components/MDXHeadingOne/MDXHeadingOne.component'
 import { Layout } from '../layout/Layout.component'
 import { defaultTheme } from '../styles/default.theme'
 import { GlobalStyle } from '../styles/GlobalStyle'
@@ -20,12 +22,19 @@ export const RootProvider: FCC = ({ children }) => (
         }
         rel={'stylesheet'}
       />
+      <title>{'Ofanotes'}</title>
     </Helmet>
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
       <MDXProvider
         components={{
           a: Link,
+          h1: MDXHeadingOne,
+          h2: createMDXHeading('h2'),
+          h3: createMDXHeading('h3'),
+          h4: createMDXHeading('h4'),
+          h5: createMDXHeading('h5'),
+          h6: createMDXHeading('h6'),
           hr: Divider,
           // eslint-disable-next-line react/display-name
           pre: (preProps) => {

@@ -1,15 +1,16 @@
 import { createGlobalStyle, css } from 'styled-components'
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle` 
   ${({ theme }) => css`
     *,
     *::before,
     *::after {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      text-align: justify;
     }
 
     html {
@@ -46,7 +47,9 @@ export const GlobalStyle = createGlobalStyle`
       ${theme.typography.h6};
     }
 
-    p {
+    p,
+    ul,
+    ol {
       ${theme.typography.p}
     }
 

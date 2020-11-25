@@ -1,0 +1,164 @@
+---
+title: Mocking browser APIs in Jest
+createdAt: 2020-11-21T16:31:41.493Z
+tags:
+  - Jest
+  - JavaScript
+  - TypeScript
+---
+
+# Mocking browser APIs in Jest [2020-11-21]
+
+Mock functions allow you to test the links between code by erasing the actual implementation of a function, capturing calls to the function (and the parameters passed in those calls), capturing instances of constructor functions when instantiated with new, and allowing test-time configuration of return values.
+
+---
+
+- [window.location.assign](#window.location.assign)
+- [window.navigator.geolocation](#window.navigator.geolocation)
+- [window.navigator.permissions](#window.navigator.permissions)
+- [window.resizeTo](#window.resizeTo)
+
+---
+
+## `window.location.assign`
+
+The `location.assign()` method causes the window to load and display the document at the URL specified. After the navigation occurs, the user can navigate back to the page that called `location.assign()` by pressing the "back" button.
+
+```typescript
+export const mockLocationAssign = (): void => {
+  Object.defineProperty(window.location, 'assign', {
+    configurable: true,
+    value: jest.fn(),
+    writable: true
+  })
+}
+```
+
+## `window.navigator.geolocation`
+
+The `navigator.geolocation` property returns an object that gives Web content access to the location of the device. This allows a website or app to offer customized results based on the user's location.
+
+```typescript
+interface IMockNavigatorGeolocationOptions {
+  errorMessage?: string
+  hasWatchPositionError?: boolean
+  isGeolocationSupported?: boolean
+  latitude?: number
+  longitude?: number
+  timestamp?: number
+  watchId?: number
+}
+
+interface IMockNavigatorGeolocationReturn {
+  latitude: number
+  longitude: number
+  timestamp: number
+  watchId: number
+}
+
+export const mockNavigatorGeolocation = ({
+  isGeolocationSupported = true,
+  hasWatchPositionError = false,
+  errorMessage = 'Something went wrong!',
+  latitude,
+  longitude,
+  timestamp,
+  watchId
+}: IMockNavigatorGeolocationOptions = {}): IMockNavigatorGeolocationReturn => {
+  const defaultLat = 50.0647
+  const defaultLong = 19.945
+  const defaultWatchId = 15
+  const defaultTimestamp = 189195
+
+  function watchPosition(
+    successCallback: PositionCallback,
+    errorCallback: PositionErrorCallback
+  ): number {
+    if (hasWatchPositionError) {
+      errorCallback({
+        PERMISSION_DENIED: 0,
+        POSITION_UNAVAILABLE: 0,
+        TIMEOUT: 0,
+        code: 0,
+        message: errorMessage
+      })
+    } else {
+      successCallback({
+        coords: {
+          accuracy: 1,
+          altitude: null,
+          altitudeAccuracy: null,
+          heading: null,
+          latitude: latitude ?? defaultLat,
+          longitude: longitude ?? defaultLong,
+          speed: null
+        },
+        timestamp: timestamp ?? defaultTimestamp
+      })
+    }
+
+    return watchId ?? defaultWatchId
+  }
+
+  Object.defineProperty(window.navigator, 'geolocation', {
+    configurable: true,
+    value: isGeolocationSupported
+      ? {
+          clearWatch: jest.fn(),
+          getCurrentPosition: jest.fn(),
+          watchPosition
+        }
+      : undefined,
+    writable: true
+  })
+
+  return {
+    latitude: defaultLat,
+    longitude: defaultLong,
+    timestamp: defaultTimestamp,
+    watchId: defaultWatchId
+  }
+}
+```
+
+## `window.navigator.permissions`
+
+The `navigator.permissions` read-only property returns an object that can be used to query and update permission status of APIs covered by the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API).
+
+```typescript
+export const mockNavigatorPermissions = (permission: PermissionState): void => {
+  Object.defineProperty(window.navigator, 'permissions', {
+    configurable: true,
+    value: {
+      query: jest.fn().mockImplementation(
+        async (): Promise<PermissionStatus> =>
+          Promise.resolve({
+            addEventListener: jest.fn(),
+            dispatchEvent: jest.fn(),
+            onchange: jest.fn(),
+            removeEventListener: jest.fn(),
+            state: permission
+          })
+      )
+    },
+    writable: true
+  })
+}
+```
+
+## `window.resizeTo`
+
+The `resizeTo()` method dynamically resizes the window.
+
+```typescript
+export const mockResizeTo = (): void => {
+  window.resizeTo = function resizeTo(width, height) {
+    Object.assign(this, {
+      innerHeight: height,
+      innerWidth: width,
+      outerHeight: height,
+      outerWidth: width
+    }).dispatchEvent(new this.Event('resize'))
+  }
+}
+```

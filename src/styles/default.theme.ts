@@ -42,6 +42,10 @@ export const defaultTheme: DefaultTheme = {
       icon: 'hsl(0, 0%, 50%)',
       label: 'hsl(0, 0%, 50%)'
     },
+    mdxHeading: {
+      svg: 'hsl(0, 0%, 80%)',
+      svgHover: 'hsl(0, 0%, 20%)'
+    },
     menuItem: {
       highlight: 'hsl(265, 100%, 60%)'
     },
@@ -49,6 +53,7 @@ export const defaultTheme: DefaultTheme = {
       anchorHover: 'hsl(265, 100%, 50%)',
       code: 'hsl(265, 50%, 20%)',
       codeBackground: 'hsl(30, 70%, 92%)',
+      light: 'hsl(265, 0%, 50%)',
       main: 'hsl(0, 0%, 20%)',
       strong: 'hsl(265, 50%, 50%)'
     }
@@ -150,7 +155,7 @@ export const defaultTheme: DefaultTheme = {
     p: css`
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
-        padding: 8px 0;
+        padding: 12px 0;
       `}
     `,
     strong: css`
