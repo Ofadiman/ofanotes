@@ -2,7 +2,7 @@
 import rangeParser from 'parse-numeric-range'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import nightOwlTheme from 'prism-react-renderer/themes/nightOwl'
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 import {
   StyledCodeHighlighter,
@@ -16,25 +16,9 @@ import {
 import { CodeHighlighterProps } from './CodeHighlighter.types'
 
 export const CodeHighlighter: FC<CodeHighlighterProps> = ({ codeString, language, metastring }) => {
-  const [longestCodeLineWidth, setLongestCodeLineWidth] = useState<number | null>(null)
   const highlightedLinesRef = useRef<number[]>(
     metastring === undefined ? [] : rangeParser(metastring.replace(/[[\]]/gu, ''))
   )
-
-  useLayoutEffect(() => {
-    const lineContentSpans = document.querySelectorAll('.span-line-content')
-    const lineNumberSpans = document.querySelectorAll('.span-line-number')
-    const lineWidths = [...lineContentSpans].map((contentSpan, index) => {
-      const horizontalPadding = 20
-
-      return (
-        contentSpan.getBoundingClientRect().width +
-        lineNumberSpans[index].getBoundingClientRect().width +
-        horizontalPadding
-      )
-    })
-    setLongestCodeLineWidth(Math.max(...lineWidths))
-  }, [])
 
   return (
     <Highlight {...defaultProps} code={codeString} language={language} theme={nightOwlTheme}>
@@ -47,7 +31,6 @@ export const CodeHighlighter: FC<CodeHighlighterProps> = ({ codeString, language
                 <StyledLine
                   isHighlighted={highlightedLinesRef.current.includes(index + 1)}
                   key={index}
-                  width={longestCodeLineWidth === null ? undefined : longestCodeLineWidth}
                   {...getLineProps({ key: index, line })}
                 >
                   {highlightedLinesRef.current.includes(index + 1) && <StyledLineDecoration />}

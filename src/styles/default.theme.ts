@@ -104,6 +104,10 @@ export const defaultTheme: DefaultTheme = {
         font-size: 3.2rem;
         font-weight: normal;
         padding: 6rem 0 3rem;
+
+        & code {
+          margin: 0 6px;
+        }
       `}
     `,
     h3: css`

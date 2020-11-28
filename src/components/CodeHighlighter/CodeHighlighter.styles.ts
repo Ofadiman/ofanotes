@@ -50,12 +50,12 @@ export const StyledLineDecoration = styled.span`
 `
 
 export const StyledLine = styled.div<StyledLineProps>`
-  ${({ theme, isHighlighted, width }) => css`
+  ${({ theme, isHighlighted }) => css`
     background-color: ${isHighlighted && theme.palette.codeHighlighter.lineHighlighted};
     min-width: 100%;
     padding: 4px 20px;
     position: relative;
-    width: ${width}px;
+    width: fit-content;
   `}
 `
 

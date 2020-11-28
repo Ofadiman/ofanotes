@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 
 import { Link } from '../components/Link/Link.component'
-import { StyledMainProps } from './Layout.types'
 
 export const StyledLink = styled(Link)`
   ${({ theme }) => css`
@@ -13,20 +12,17 @@ export const StyledLink = styled(Link)`
   `}
 `
 
-export const StyledMain = styled.main<StyledMainProps>`
-  ${({ width }) => css`
-    margin: 40px auto 120px;
-    max-width: 1000px;
-    position: relative;
-    width: ${width !== null && `${width - 80}px`};
+export const StyledMain = styled.main`
+  margin: 40px auto 120px;
+  max-width: 1000px;
+  position: relative;
 
-    #gatsby-focus-wrapper {
-      display: flex;
-      flex-flow: column;
-      height: 100%;
-      width: 100%;
-    }
-  `}
+  #gatsby-focus-wrapper {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100%;
+  }
 `
 
 export const StyledLayout = styled.div`

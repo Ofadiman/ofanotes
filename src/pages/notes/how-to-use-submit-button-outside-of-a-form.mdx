@@ -1,0 +1,29 @@
+---
+title: How to use submit button outside of a form
+createdAt: 2020-11-26T18:11:17.055Z
+tags:
+  - HTML5
+  - JavaScript
+---
+
+# How to use submit button outside of a form [2020-11-26]
+
+The HTML `<form>` element represents a document section containing interactive controls for submitting information.
+
+## The `form` attribute
+
+To submit a form when the button isn't a child of the parent form, you can use the `form` attribute.
+
+```html
+<form id="myForm">
+  <label for="email">Email:</label>
+  <input type="email" name="email" placeholder="Email" />
+</form>
+
+<button type="submit" form="myForm">Submit!</button>
+```
+
+## References
+
+- [David Walsh blog](https://davidwalsh.name/submit-button-outside-form)
+- [HTML &lt;form /&gt; docs by MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)

@@ -3,6 +3,7 @@ export enum Tags {
   CSS = 'CSS',
   Docker = 'Docker',
   Git = 'Git',
+  HTML5 = 'HTML5',
   JavaScript = 'JavaScript',
   Jest = 'Jest',
   Node = 'Node',

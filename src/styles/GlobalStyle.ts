@@ -1,6 +1,6 @@
 import { createGlobalStyle, css } from 'styled-components'
 
-export const GlobalStyle = createGlobalStyle` 
+export const GlobalStyle = createGlobalStyle`
   ${({ theme }) => css`
     *,
     *::before,
@@ -50,27 +50,27 @@ export const GlobalStyle = createGlobalStyle`
     p,
     ul,
     ol {
-      ${theme.typography.p}
+      ${theme.typography.p};
     }
 
     button {
-      ${theme.typography.button}
+      ${theme.typography.button};
     }
 
     input {
-      ${theme.typography.input}
+      ${theme.typography.input};
     }
 
     li {
-      ${theme.typography.li}
+      ${theme.typography.li};
     }
 
     code {
-      ${theme.typography.code}
+      ${theme.typography.code};
     }
 
     a {
-      ${theme.typography.a}
+      ${theme.typography.a};
     }
   `}
 `

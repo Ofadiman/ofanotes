@@ -4,6 +4,7 @@ import BabelSvg from '../../assets/icons/babel.inline.svg'
 import CSSSvg from '../../assets/icons/css.inline.svg'
 import DockerSvg from '../../assets/icons/docker.inline.svg'
 import GitSvg from '../../assets/icons/git.inline.svg'
+import HTML5Svg from '../../assets/icons/html5.inline.svg'
 import JavaScriptSvg from '../../assets/icons/javascript.inline.svg'
 import JestSvg from '../../assets/icons/jest.inline.svg'
 import NodeSvg from '../../assets/icons/node.inline.svg'
@@ -20,6 +21,7 @@ icons.set(Tags.Babel, BabelSvg)
 icons.set(Tags.CSS, CSSSvg)
 icons.set(Tags.Docker, DockerSvg)
 icons.set(Tags.Git, GitSvg)
+icons.set(Tags.HTML5, HTML5Svg)
 icons.set(Tags.JavaScript, JavaScriptSvg)
 icons.set(Tags.Jest, JestSvg)
 icons.set(Tags.Node, NodeSvg)

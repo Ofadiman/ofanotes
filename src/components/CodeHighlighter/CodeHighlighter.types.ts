@@ -8,5 +8,4 @@ export interface CodeHighlighterProps {
 
 export interface StyledLineProps {
   isHighlighted: boolean
-  width: number | undefined
 }

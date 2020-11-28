@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 
 import { CodeHighlighter } from '../components/CodeHighlighter/CodeHighlighter.component'
 import { Divider } from '../components/Divider/Divider.component'
+import { ExamplesTitle } from '../components/ExamplesTitle/ExamplesTitle.component'
 import { Link } from '../components/Link/Link.component'
 import { createMDXHeading } from '../components/MDXHeading/MDXHeading.component'
 import { MDXHeadingOne } from '../components/MDXHeadingOne/MDXHeadingOne.component'
@@ -28,6 +29,7 @@ export const RootProvider: FCC = ({ children }) => (
       <GlobalStyle />
       <MDXProvider
         components={{
+          ExamplesTitle,
           a: Link,
           h1: MDXHeadingOne,
           h2: createMDXHeading('h2'),
