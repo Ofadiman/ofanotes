@@ -713,12 +713,6 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['plopfile.ts'],
-      rules: {
-        'import/no-default-export': 'off'
-      }
-    },
-    {
       files: ['codegen/**/*.ts'],
       rules: {
         '@typescript-eslint/no-require-imports': 'off',
@@ -731,13 +725,13 @@ module.exports = {
       }
     },
     {
-      files: ['gatsby-*'],
+      files: ['gatsby-*.js'],
       rules: {
         camelcase: 'off'
       }
     },
     {
-      files: ['src/pages/*'],
+      files: ['src/pages/*.tsx'],
       rules: {
         'import/no-default-export': 'off'
       }

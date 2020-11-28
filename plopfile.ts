@@ -1,3 +1,4 @@
+/* eslint-disable import/no-default-export */
 import { green } from 'chalk'
 import { NodePlopAPI } from 'plop'
 
