@@ -11,14 +11,7 @@ tags:
 
 Mock functions allow you to test the links between code by erasing the actual implementation of a function, capturing calls to the function (and the parameters passed in those calls), capturing instances of constructor functions when instantiated with new, and allowing test-time configuration of return values.
 
-## Table of contents
-
-- [window.location.assign](#the-window-location-assign-method)
-- [window.navigator.geolocation](#the-window-navigator-geolocation-property)
-- [window.navigator.permissions](#the-window-navigator-permissions-property)
-- [window.resizeTo](#the-window-resize-to-method)
-
----
+<TableOfContents />
 
 ### The `window.location.assign` method
 
@@ -162,3 +155,7 @@ export const mockResizeTo = (): void => {
   }
 }
 ```
+
+## References
+
+- [Mocking window.location methods in Jest & jsdom.](https://www.benmvp.com/blog/mocking-window-location-methods-jest-jsdom/)

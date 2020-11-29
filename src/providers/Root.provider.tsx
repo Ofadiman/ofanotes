@@ -10,6 +10,7 @@ import { ExamplesTitle } from '../components/ExamplesTitle/ExamplesTitle.compone
 import { Link } from '../components/Link/Link.component'
 import { createMDXHeading } from '../components/MDXHeading/MDXHeading.component'
 import { MDXHeadingOne } from '../components/MDXHeadingOne/MDXHeadingOne.component'
+import { TableOfContents } from '../components/TableOfContents/TableOfContents.component'
 import { Layout } from '../layout/Layout.component'
 import { defaultTheme } from '../styles/default.theme'
 import { GlobalStyle } from '../styles/GlobalStyle'
@@ -31,6 +32,7 @@ export const RootProvider: FCC = ({ children }) => (
         components={{
           ExamplesTitle,
           MDXHeadingOne,
+          TableOfContents,
           a: Link,
           h1: createMDXHeading('h1'),
           h2: createMDXHeading('h2'),
