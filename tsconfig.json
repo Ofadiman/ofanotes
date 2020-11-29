@@ -16,12 +16,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ES5",
-    "typeRoots": ["node_modules/@types", "@types"]
+    "typeRoots": ["node_modules/@types", "src/types"]
   },
   "ts-node": {
     "compilerOptions": {
       "module": "Commonjs"
     }
   },
-  "include": ["src", "codegen", "@types", "*"]
+  "include": ["src", "codegen", "*"]
 }
