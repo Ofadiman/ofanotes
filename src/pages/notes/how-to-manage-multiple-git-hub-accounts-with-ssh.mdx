@@ -9,7 +9,16 @@ tags:
 
 SSH stands for secure shell. It is a remote administration protocol that allows users to control and modify their remote servers over the internet. It provides a mechanism for authenticating a remote user, transferring inputs from the client to the host, and relaying the output back to the client. You can execute shell commands in the same manner as you would if you were physically operating the remote computer. SSH supports several public key algorithms for authentication keys i.e. `rsa`, `dsa`, `ecdsa` and `ed25519`.
 
-## The ssh command
+## Table of contents
+
+- [The `ssh` command](#the-ssh-command)
+- [The `ssh-keygen` command](#the-ssh-keygen-command)
+- [Adding ssh keys](#adding-ssh-keys)
+- [Managing multiple GitHub accounts](#managing-multiple-github-accounts)
+
+---
+
+### The `ssh` command
 
 The `ssh` command consists of 3 distinct parts and instructs your system that you want to open an encrypted Secure Shell Connection.
 
@@ -19,7 +28,7 @@ $ ssh {user}@{host}
 
 In the example above, `{user}` represents the account you want to access. For example, you may want to access the root user, which is basically synonymous for system administrator with complete rights to modify anything on the system. `{host}` refers to the computer you want to access. This can be an IP Address (e.g. 244.235.23.19), or a domain name (e.g. https://ofanotes.netlify.app/).
 
-## The ssh-keygen command
+### The `ssh-keygen` command
 
 The `ssh-keygen` is a command for creating new authentication key pairs for SSH. Such key pairs are used for automating logins, single sign-on, and for authenticating hosts.
 
@@ -31,7 +40,7 @@ Some command options are:
 - `-f <file-name>` - Specify the file name for a new SSH key.
 - `-t <type-of-algorithm>` - Specify the type of algorithm to be used while generating a new SSH key.
 
-## Adding ssh keys
+### Adding ssh keys
 
 1. Create a new SSH key pairs.
 2. Check for saved keys.
@@ -45,7 +54,7 @@ $ ssh-add ~/.ssh/id_rsa
 
 The `id_rsa` is going to be the default key used for every ssh connection with remote servers.
 
-## Managing multiple GitHub accounts
+### Managing multiple GitHub accounts
 
 1. Create a new key pairs with the name of _id_rsa_company_name_.
 2. Modify or create `~/.ssh/config` file.

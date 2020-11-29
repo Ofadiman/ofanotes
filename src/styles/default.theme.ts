@@ -95,13 +95,13 @@ export const defaultTheme: DefaultTheme = {
         font-size: 4rem;
         font-weight: normal;
         letter-spacing: 1px;
-        padding: 3.2rem 0;
+        padding: 3rem 0;
       `}
     `,
     h2: css`
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
-        font-size: 3.2rem;
+        font-size: 3.6rem;
         font-weight: normal;
         padding: 6rem 0 3rem;
 
@@ -113,16 +113,20 @@ export const defaultTheme: DefaultTheme = {
     h3: css`
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
-        font-size: 2.6rem;
+        font-size: 3.2rem;
         font-weight: normal;
         letter-spacing: 1px;
-        padding: 2.4rem 0;
+        padding: 4.8rem 0 2.4rem;
+
+        code {
+          margin: 0 8px;
+        }
       `}
     `,
     h4: css`
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
-        font-size: 2.4rem;
+        font-size: 2.8rem;
         font-weight: normal;
         padding: 2rem 0;
       `}
@@ -130,7 +134,7 @@ export const defaultTheme: DefaultTheme = {
     h5: css`
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
-        font-size: 2.2rem;
+        font-size: 2.4rem;
         font-weight: normal;
         padding: 1.6rem 0;
       `}

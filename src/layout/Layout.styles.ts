@@ -14,8 +14,10 @@ export const StyledLink = styled(Link)`
 
 export const StyledMain = styled.main`
   margin: 40px auto 120px;
-  max-width: 1000px;
+  max-width: 1080px;
+  padding: 0 40px;
   position: relative;
+  width: 100%;
 
   #gatsby-focus-wrapper {
     display: flex;

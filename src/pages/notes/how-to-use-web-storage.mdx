@@ -10,7 +10,14 @@ tags:
 
 The Web Storage API provides mechanisms by which browsers can store key/value pairs. The two mechanisms within Web Storage are `sessionStorage` and `localStorage`.
 
-## Abstracting away storage operations
+## Table of contents
+
+- [Abstracting away storage operations](#abstracting-away-storage-operations)
+- [Testing](#testing)
+
+---
+
+### Abstracting away storage operations
 
 To facilitate the use of browser storage API, I like to create a simple abstraction over it. The `BaseStorage` class is responsible for handling read and write operations as well as errors.
 
@@ -72,7 +79,7 @@ export class WebStorage {
 }
 ```
 
-## Testing
+### Testing
 
 Tests for `BaseStorage` class look like that.
 

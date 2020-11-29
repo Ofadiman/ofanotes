@@ -9,10 +9,124 @@ tags:
 
 PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 
+## Table of contents
+
+- [General info](#general-info)
+- [PostgreSQL keywords](#keywords)
+- [Selecting data from a table](#selecting-data-from-a-table)
+
 ---
 
-- []()
+### General info
+
+- In conditions, You must put strings in single quotes.
+- If a string has single quote inside it, You can escape it by putting additional single quote next to the first one.
 
 ---
 
-##
+### Keywords
+
+- `AND` - The PostgreSQL AND condition (also called the AND Operator) is used to test two or more conditions in a SELECT, INSERT, UPDATE, or DELETE statement.
+- `BETWEEN` - The PostgreSQL BETWEEN condition is used to retrieve values within a range in a SELECT, INSERT, UPDATE, or DELETE statement.
+- `DISTINCT` - The PostgreSQL DISTINCT clause is used to remove duplicates from the result set. The DISTINCT clause can only be used with SELECT statements.
+- `IN` - The PostgreSQL IN condition is used to help reduce the need to use multiple OR conditions in a SELECT, INSERT, UPDATE, or DELETE statement.
+- `NOT` - The PostgreSQL NOT condition (also called the NOT operator) is used to negate a condition in a SELECT, INSERT, UPDATE, or DELETE statement.
+- `OR` - The PostgreSQL OR condition is used to test two or more conditions where records are returned when any one of the conditions are met. It can be used in a SELECT, INSERT, UPDATE, or DELETE statement.
+- `SELECT` - The PostgreSQL SELECT statement is used to retrieve records from one or more tables.
+- `WHERE` - The PostgreSQL WHERE clause is used to filter the results from a SELECT, INSERT, UPDATE, or DELETE statement.
+
+---
+
+### Selecting data from a table
+
+- Select statements.
+
+```sql
+SELECT * FROM users;
+
+SELECT name, address FROM users;
+```
+
+- Select statement with `DISTINCT` operator.
+
+```sql
+SELECT DISTINCT country FROM customers;
+```
+
+- Select statement with `COUNT` operator.
+
+```sql
+SELECT COUNT(*) FROM categories;
+
+SELECT COUNT(username) FROM users;
+
+SELECT COUNT(DISTINCT city) FROM suppliers;
+```
+
+- Select statement with math operators.
+
+```sql
+SELECT orderid, shipped_date - order_date FROM orders;
+
+SELECT orderid, unit_price * quantity FROM order_details;
+```
+
+- Select statement with `WHERE` operator.
+
+```sql
+SELECT company_name, contact_name FROM customers WHERE country='Mexico';
+
+SELECT * FROM posts WHERE title = 'can''t cook'
+
+SELECT COUNT(*) FROM order_details WHERE quantity > 20;
+
+SELECT COUNT(*) FROM orders WHERE price <= 250;
+
+SELECT COUNT(*) FROM orders WHERE order_date >= '1998-01-01';
+```
+
+- Select statement with `WHERE` and `AND` operators.
+
+```sql
+SELECT * FROM orders WHERE price > 100 AND ship_country = 'Germany';
+```
+
+- Select statement with `WHERE` and `OR` operators.
+
+```sql
+SELECT * FROM orders WHERE ship_country = 'USA' OR shipcountry = 'Brazil';
+```
+
+- Select statement with `WHERE` and `NOT` operators.
+
+```sql
+SELECT * FROM suppliers WHERE NOT country = 'USA';
+```
+
+- Select statement with combined operators.
+
+```sql
+SELECT COUNT(*)
+FROM orders
+WHERE (ship_country = 'Canada' OR ship_country = 'Spain')
+AND shipped_date > '1997-05-01';
+```
+
+- Select statement with `WHERE` and `BETWEEN` operators.
+
+```sql
+SELECT * FROM order_details WHERE unitprice BETWEEN 10 AND 20;
+```
+
+- Select statement with `WHERE` and `IN` operators.
+
+```sql
+SELECT * FROM suppliers
+WHERE country IN ('Germany', 'France', 'Spain', 'Italy');
+```
+
+## References
+
+- [PostgreSQL tutorial #1.](https://www.postgresqltutorial.com/)
+- [PostgreSQL tutorial #2.](https://www.techonthenet.com/postgresql/index.php)
+- [PostgreSQL udemy course.](https://www.udemy.com/course/postgresql-from-zero-to-hero/)

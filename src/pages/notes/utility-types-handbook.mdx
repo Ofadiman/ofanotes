@@ -9,37 +9,33 @@ tags:
 
 TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally. You can also create your own custom utility types.
 
+## Table of contents
+
+- [ConstructorParameters](#the-constructor-parameters-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Exclude](#the-exclude-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Extract](#the-extract-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [InstanceType](#the-instance-type-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [NonNullable](#the-non-nullable-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Omit](#the-omit-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Parameters](#the-parameters-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Partial](#the-partial-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Pick](#the-pick-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Readonly](#the-readonly-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Record](#the-record-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [Required](#the-required-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+- [ReturnType](#the-return-type-type) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
+
 ---
 
-- [ConstructorParameters](#ConstructorParameters) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Exclude](#Exclude) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Extract](#Extract) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [InstanceType](#InstanceType) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [NonNullable](#NonNullable) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Omit](#Omit) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Parameters](#Parameters) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Partial](#Partial) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Pick](Pick) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Readonly](#Readonly) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Record](#Record) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [Required](#Required) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-- [ReturnType](#ReturnType) <span style={{color: 'hsl(0,0%,80%)'}}>(built-in)</span>
-
----
-
-## `ConstructorParameters`
+### The `ConstructorParameters` type
 
 Constructs a tuple or array type from the types of a constructor function type. It produces a tuple type with all the parameter types (or the type never if Type is not a function).
 
-```typescript
+```typescript 1-3
 type ConstructorParameters<
   ClassType extends new (...args: any) => any
 > = ClassType extends new (...args: infer Arg) => any ? Arg : never
-```
 
-<ExamplesTitle />
-
-```typescript 5
 class User {
   public constructor(private name: string, private age: number) {}
 }
@@ -47,53 +43,41 @@ class User {
 type UserParameters = ConstructorParameters<typeof User>
 ```
 
-## `Exclude`
+### The `Exclude` type
 
 Constructs a type by excluding from `Type` all union members that are assignable to `Union`.
 
-```typescript
+```typescript 1
 type Exclude<Type, Union> = Type extends Union ? never : Type
-```
 
-<ExamplesTitle />
-
-```typescript 3
 type Roles = 'user' | 'client' | 'admin'
 
 type NonAdmin = Exclude<Roles, 'admin'>
 ```
 
-## `Extract`
+### The `Extract` type
 
 Constructs a type by extracting from `Type` all union members that are assignable to `Union`.
 
-```typescript
+```typescript 1
 type Extract<Type, Union> = Type extends Union ? Type : never
-```
 
-<ExamplesTitle />
-
-```typescript 3
 type Roles = 'user' | 'client' | 'admin'
 
 type Admin = Extract<Roles, 'admin'>
 ```
 
-## `InstanceType`
+### The `InstanceType` type
 
 Constructs a type consisting of the instance type of constructor function in `Type`.
 
-```typescript
+```typescript 1-5
 type InstanceType<Type extends new (...args: any) => any> = Type extends new (
   ...args: any
 ) => infer ReturnedInstance
   ? ReturnedInstance
   : any
-```
 
-<ExamplesTitle />
-
-```typescript 15
 class User {
   public name: string
   public age: number
@@ -111,72 +95,57 @@ class User {
 type UserInstance = InstanceType<typeof User>
 ```
 
-## `NonNullable`
+### The `NonNullable` type
 
 Constructs a type by excluding `null` and `undefined` from `Union`.
 
-```typescript
+```typescript 1
 type NonNullable<Union> = Union extends null | undefined ? never : Union
-```
 
-<ExamplesTitle />
-
-```typescript 3
 type NullableFruit = 'banana' | 'apple' | undefined | null
 
 type Fruit = NonNullable<NullableFruit>
 ```
 
-## `Omit`
+### The `Omit` type
 
 Constructs a type by picking all properties from `Type` and then removing `Keys`.
 
-```typescript
+```typescript 1
 type Omit<Type, Key extends keyof Type> = Pick<Type, Exclude<keyof Type, Key>>
-```
 
-<ExamplesTitle />
-
-```typescript 6
 interface FizzBuzz {
   buzz: string
   fizz: string
 }
 
 type Fizz = Omit<FizzBuzz, 'buzz'>
+
 ```
 
-## `Parameters`
+### The `Parameters` type
 
 Constructs a tuple type from the types used in the parameters of a function type `Type`.
 
-```typescript
+```typescript 1-5
 type Parameters<Function extends (...args: any) => any> = Function extends (
   ...args: infer Arg
 ) => unknown
   ? Arg
   : never
-```
 
-<ExamplesTitle />
-
-```typescript 3
 declare function fn(name: string, age: string): void
 
 type FnParams = Parameters<typeof fn>
 ```
 
-## `Partial`
+### The `Partial` type
 
 Constructs a type with all properties of `Type` set to optional. This utility will return a type that represents all subsets of a given type.
 
-```typescript
+```typescript 1
 type Partial<Type> = { [Key in keyof Type]?: Type[Key] }
-```
 
-<ExamplesTitle />
-
-```typescript [6,18]
 interface Theme {
   fontColor: string
   fontSize: string
@@ -197,19 +166,15 @@ class User {
 type UserUpdateDto = Partial<User>
 ```
 
-## `Pick`
+### The `Pick` type
 
 Constructs a type by picking the set of properties `Keys` from `Type`.
 
-```typescript
+```typescript 1-3
 type Pick<Type, Keys extends keyof Type> = {
   [Key in Keys]: Type[Key]
 }
-```
 
-<ExamplesTitle />
-
-```typescript 12
 class User {
   public readonly id: string = uuid()
   public name: string
@@ -224,36 +189,28 @@ class User {
 type CreateUserOptions = Pick<User, 'age' | 'name'>
 ```
 
-## `Readonly`
+### The `Readonly` type
 
 Constructs a type with all properties of `Type` set to readonly, meaning the properties of the constructed type cannot be reassigned.
 
-```typescript
+```typescript 1
 type Readonly<Type> = { readonly [Key in keyof Type]: Type[Key] }
-```
 
-<ExamplesTitle />
-
-```typescript 6
 interface Colors {
   primary: string
   secondary: string
 }
 
-type ReadonlyColors = Readonly<Colors>
+type ImmutableColors = Readonly<Colors>
 ```
 
-## `Record`
+### The `Record` type
 
 Constructs a type with a set of properties `Keys` of type `Type`. This utility can be used to map the properties of a type to another type.
 
-```typescript
+```typescript 1
 type Record<Keys extends keyof any, Type> = { [Key in Keys]: Type }
-```
 
-<ExamplesTitle />
-
-```typescript 7
 interface Purchase {
   id: string
   name: string
@@ -263,19 +220,15 @@ interface Purchase {
 type ShoppingCart = Record<string, Purchase>
 ```
 
-## `Required`
+### The `Required` type
 
 Constructs a type consisting of all properties of `Type` set to required. The opposite of `Partial`.
 
-```typescript
+```typescript 1-3
 type Required<Type> = {
   [Key in keyof Type]-?: Type[Key]
 }
-```
 
-<ExamplesTitle />
-
-```typescript 6
 interface OptionalArgs {
   bar?: string
   foo?: string
@@ -284,22 +237,22 @@ interface OptionalArgs {
 type RequiredArgs = Required<OptionalArgs>
 ```
 
-## `ReturnType`
+### The `ReturnType` type
 
 Constructs a type consisting of the return type of function `Function`.
 
-```typescript
+```typescript 1-5
 type ReturnType<Function extends (...args: any) => any> = Function extends (
   ...args: any
 ) => infer R
   ? R
   : any
-```
 
-<ExamplesTitle />
-
-```typescript 3
 declare function fn(name: string): string
 
 type FnReturn = ReturnType<typeof fn>
 ```
+
+## References
+
+- [Official TypeScript documentation.](https://www.typescriptlang.org/docs)

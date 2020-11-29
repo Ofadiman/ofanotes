@@ -1,3 +1,5 @@
+import { isValidElement, ReactElement } from 'react'
+
 import { HeadingType } from './MDXHeading.types'
 
 export const getMDXHeadingIconSize = (headingType: HeadingType): string => {
@@ -17,4 +19,12 @@ export const getMDXHeadingIconSize = (headingType: HeadingType): string => {
     default:
       return '15px'
   }
+}
+
+export const getTextFromChildren = (children: ReactElement | string): string => {
+  if (isValidElement(children)) {
+    return getTextFromChildren((children.props as { children: ReactElement | string }).children)
+  }
+
+  return children
 }

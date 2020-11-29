@@ -1,10 +1,83 @@
 ---
-title: How to use pgadmin and postgreSQL with docker
+title: How to use pgAdmin and postgreSQL with docker
 createdAt: 2020-11-27T22:15:24.410Z
 tags:
   - Docker
+  - SQL
 ---
 
-# How to use pgadmin and postgreSQL with docker [2020-11-27]
+# How to use pgAdmin and postgreSQL with docker [2020-11-27]
 
-This is the very beginning of "How to use pgadmin and postgreSQL with docker".
+This guide covers how to use [docker-compose](https://docs.docker.com/compose/) tool to create a PostgreSQL container and access it using [pgAdmin 4](https://www.pgadmin.org/).
+
+## Table of contents
+
+- [Creating `docker-compose.yaml` file](#creating-docker-compose-yaml-file)
+- [Connecting to a server](#connecting-to-a-server)
+
+---
+
+### Creating `docker-compose.yaml` file
+
+1. Setup `db` service that will listen on port `5432` on localhost.
+2. Setup `pgadmin` service that will listen on port `8080` on localhost.
+3. Specify volumes for new services.
+
+```yaml [4,20,33]
+version: '3.7'
+
+services:
+  db:
+    container_name: db
+    image: postgres:12.4-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    depends_on:
+      - pgadmin
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    container_name: pg-admin
+    image: dpage/pgadmin4:4.18
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: email@domain.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+      PGADMIN_LISTEN_PORT: 8080
+    ports:
+      - 8080:8080
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  pgadmin-data:
+  db-data:
+```
+
+To start `db` and `pgadmin` services run the following command in `docker-compose.yaml` file directory.
+
+```shell script
+$ docker-compose up -d
+```
+
+Now, that the docker containers are running, You can access pgAdmin UI at [localhost](http://localhost:8080).
+
+### Connecting to a server
+
+Before you can use the pgAdmin client to manage the objects that reside on your Postgres server, you must define a connection to the server. In order to do that, follow the steps below.
+
+1. Login with credentials specified in compose file.
+2. Right click on `Servers` > `create` > `Servers...`.
+3. In "general" settings tab fill up the "Name" field.
+4. In "connection" settings tab fill up the "Host name" (`db`), "Port" (`5432`), "Username" (`postgres`), "Maintenance database" (`postgres`) and "Password" (`postgres`).
+
+## References
+
+- [Set up a PostgreSQL server and pgAdmin with Docker.](https://linuxhint.com/postgresql_docker/)

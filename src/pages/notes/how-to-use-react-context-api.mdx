@@ -11,7 +11,14 @@ tags:
 
 Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 
-## Creating a context
+## Table of contents
+
+- [Creating a context](#creating-a-context)
+- [Avoiding unnecessary re-renders](#avoiding-unnecessary-re-renders)
+
+---
+
+### Creating a context
 
 1. Define the shape of your context with `UserContextValue` type.
 2. Create the contexts itself with `createContext` function.
@@ -73,7 +80,7 @@ export const updateUser = (
 - `useUserContext` validates access to the context value, and throws a helpful error when you forget to wrap your component with `UserContextProvider`.
 - Helper functions (such as `updateUser`) are created outside the `UserContextProvider` closure, to optimize performance by avoid `useCallback` hooks. This is what Facebook does.
 
-## Avoiding unnecessary re-renders
+### Avoiding unnecessary re-renders
 
 In techniques like [compound components](https://kentcdodds.com/blog/compound-components-with-react-hooks) you may want to use context to pass data around related components. In this case, it might be beneficial to memoize the context value with `useMemo()` hook. That is because, when the parent of `<ContextProvider />` re-renders, the provider will be recreated with a new context value.
 

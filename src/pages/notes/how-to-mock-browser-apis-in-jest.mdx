@@ -7,20 +7,20 @@ tags:
   - TypeScript
 ---
 
-# Mocking browser APIs in Jest [2020-11-21]
+# How to mock browser APIs in Jest [2020-11-21]
 
 Mock functions allow you to test the links between code by erasing the actual implementation of a function, capturing calls to the function (and the parameters passed in those calls), capturing instances of constructor functions when instantiated with new, and allowing test-time configuration of return values.
 
+## Table of contents
+
+- [window.location.assign](#the-window-location-assign-method)
+- [window.navigator.geolocation](#the-window-navigator-geolocation-property)
+- [window.navigator.permissions](#the-window-navigator-permissions-property)
+- [window.resizeTo](#the-window-resize-to-method)
+
 ---
 
-- [window.location.assign](#window.location.assign)
-- [window.navigator.geolocation](#window.navigator.geolocation)
-- [window.navigator.permissions](#window.navigator.permissions)
-- [window.resizeTo](#window.resizeTo)
-
----
-
-## `window.location.assign`
+### The `window.location.assign` method
 
 The `location.assign()` method causes the window to load and display the document at the URL specified. After the navigation occurs, the user can navigate back to the page that called `location.assign()` by pressing the "back" button.
 
@@ -34,7 +34,7 @@ export const mockLocationAssign = (): void => {
 }
 ```
 
-## `window.navigator.geolocation`
+### The `window.navigator.geolocation` property
 
 The `navigator.geolocation` property returns an object that gives Web content access to the location of the device. This allows a website or app to offer customized results based on the user's location.
 
@@ -121,9 +121,9 @@ export const mockNavigatorGeolocation = ({
 }
 ```
 
-## `window.navigator.permissions`
+### The `window.navigator.permissions` property
 
-The `navigator.permissions` read-only property returns an object that can be used to query and update permission status of APIs covered by the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API).
+The `navigator.permissions` property returns an object that can be used to query and update permission status of APIs covered by the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API).
 
 ```typescript
 export const mockNavigatorPermissions = (permission: PermissionState): void => {
@@ -146,7 +146,7 @@ export const mockNavigatorPermissions = (permission: PermissionState): void => {
 }
 ```
 
-## `window.resizeTo`
+### The `window.resizeTo` method
 
 The `resizeTo()` method dynamically resizes the window.
 

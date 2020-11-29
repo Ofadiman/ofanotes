@@ -28,7 +28,7 @@ export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Elem
 
   return (
     <StyledIndexPage>
-      <h1>{`You can't remember everything, but You can note it.`}</h1>
+      <h1>{`Quote of the day feature here.`}</h1>
       <Input
         Icon={SearchSvg}
         label={`I'm looking for...`}
