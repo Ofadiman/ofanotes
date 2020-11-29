@@ -30,8 +30,9 @@ export const RootProvider: FCC = ({ children }) => (
       <MDXProvider
         components={{
           ExamplesTitle,
+          MDXHeadingOne,
           a: Link,
-          h1: MDXHeadingOne,
+          h1: createMDXHeading('h1'),
           h2: createMDXHeading('h2'),
           h3: createMDXHeading('h3'),
           h4: createMDXHeading('h4'),
