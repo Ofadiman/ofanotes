@@ -72,5 +72,9 @@ export const GlobalStyle = createGlobalStyle`
     a {
       ${theme.typography.a};
     }
+
+    li > ul {
+      padding: 4px 0 4px 20px;
+    }
   `}
 `

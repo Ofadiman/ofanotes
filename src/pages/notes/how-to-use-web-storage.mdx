@@ -6,11 +6,11 @@ tags:
   - TypeScript
 ---
 
-<MDXHeadingOne />
-
-The Web Storage API provides mechanisms by which browsers can store key/value pairs. The two mechanisms within Web Storage are `sessionStorage` and `localStorage`.
-
-<TableOfContents />
+<MDXIntro>
+  The Web Storage API provides mechanisms by which browsers can store key/value
+  pairs. The two mechanisms within Web Storage are `sessionStorage` and
+  `localStorage`.
+</MDXIntro>
 
 ### Abstracting away storage operations
 
@@ -157,7 +157,7 @@ describe('BaseStorage class', () => {
 
 - In order to test `BaseStorage` class make sure you have [jest-localstorage-mock](https://www.npmjs.com/package/jest-localstorage-mock) package installed and initialized.
 
-## References
+### References
 
 - [Mocking storage API in Jest.](https://github.com/clarkbw/jest-localstorage-mock)
 - [Storage API docs by MDN.](https://developer.mozilla.org/en-US/docs/Web/API/Storage)

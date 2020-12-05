@@ -5,11 +5,11 @@ tags:
   - SQL
 ---
 
-<MDXHeadingOne />
-
-PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
-
-<TableOfContents />
+<MDXIntro>
+  PostgreSQL is a powerful, open source object-relational database system with
+  over 30 years of active development that has earned it a strong reputation for
+  reliability, feature robustness, and performance.
+</MDXIntro>
 
 ### General info
 
@@ -18,109 +18,229 @@ PostgreSQL is a powerful, open source object-relational database system with ove
 
 ---
 
+### Utility commands
+
+- `\! clear` - clear terminal.
+- `\c <database-name>` - connect to other database.
+- `\dn` - list all schemas.
+- `\dt` - list all data types.
+- `\l` - list all databases.
+- `docker-compose exec <service-name> psql <username> <password>` - connect to database running inside docker container.
+
+---
+
 ### Keywords
 
-- `AND` - The PostgreSQL AND condition (also called the AND Operator) is used to test two or more conditions in a SELECT, INSERT, UPDATE, or DELETE statement.
-- `BETWEEN` - The PostgreSQL BETWEEN condition is used to retrieve values within a range in a SELECT, INSERT, UPDATE, or DELETE statement.
-- `DISTINCT` - The PostgreSQL DISTINCT clause is used to remove duplicates from the result set. The DISTINCT clause can only be used with SELECT statements.
-- `IN` - The PostgreSQL IN condition is used to help reduce the need to use multiple OR conditions in a SELECT, INSERT, UPDATE, or DELETE statement.
-- `NOT` - The PostgreSQL NOT condition (also called the NOT operator) is used to negate a condition in a SELECT, INSERT, UPDATE, or DELETE statement.
-- `OR` - The PostgreSQL OR condition is used to test two or more conditions where records are returned when any one of the conditions are met. It can be used in a SELECT, INSERT, UPDATE, or DELETE statement.
-- `SELECT` - The PostgreSQL SELECT statement is used to retrieve records from one or more tables.
-- `WHERE` - The PostgreSQL WHERE clause is used to filter the results from a SELECT, INSERT, UPDATE, or DELETE statement.
+- `AND` - The PostgreSQL `AND` condition (also called the `AND` Operator) is used to test two or more conditions in a `SELECT`, `INSERT`, UPDATE, or `DELETE` statement.
+- `BETWEEN` - The PostgreSQL `BETWEEN` condition is used to retrieve values within a range in a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement.
+- `DISTINCT` - The PostgreSQL `DISTINCT` clause is used to remove duplicates from the result set. The `DISTINCT` clause can only be used with `SELECT` statements.
+- `HAVING` - The PostgreSQL `HAVING` clause is used in combination with the `GROUP BY` clause to restrict the groups of returned rows to only those whose the condition is `TRUE`.
+- `INTERSECT` - The PostgreSQL `INTERSECT` operator returns the intersection of 2 or more datasets.
+- `IN` - The PostgreSQL `IN` condition is used to help reduce the need to use multiple `OR` conditions in a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement.
+- `NOT` - The PostgreSQL `NOT` condition (also called the `NOT` operator) is used to negate a condition in a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement.
+- `ORDER BY` - The PostgreSQL `ORDER BY` clause is used to sort the records in your result set. The `ORDER BY` clause can only be used in `SELECT` statements.
+- `OR` - The PostgreSQL `OR` condition is used to test two or more conditions where records are returned when any one of the conditions are met. It can be used in a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement.
+- `SELECT` - The PostgreSQL `SELECT` statement is used to retrieve records from one or more tables.
+- `UNION` - The PostgreSQL `UNION` operator is used to combine the result sets of 2 or more `SELECT` statements. It removes duplicate rows between the various `SELECT` statements.
+- `USING` - The PostgreSQL `USING` clause is a shorthand that allows you to take advantage of the specific situation where both sides of the join use the same name for the joining column(s).
+- `WHERE` - The PostgreSQL `WHERE` clause is used to filter the results from a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement.
 
 ---
 
 ### Selecting data from a table
 
-- Select statements.
+- `SELECT` - The PostgreSQL `SELECT` statement is used to retrieve records from one or more tables in PostgreSQL.
 
 ```sql
-SELECT * FROM users;
-
 SELECT name, address FROM users;
-```
-
-- Select statement with `DISTINCT` operator.
-
-```sql
 SELECT DISTINCT country FROM customers;
-```
 
-- Select statement with `COUNT` operator.
-
-```sql
 SELECT COUNT(*) FROM categories;
-
 SELECT COUNT(username) FROM users;
-
 SELECT COUNT(DISTINCT city) FROM suppliers;
-```
 
-- Select statement with math operators.
+SELECT order_id, shipped_date - order_date FROM orders;
+SELECT order_id, unit_price * quantity FROM order_details;
 
-```sql
-SELECT orderid, shipped_date - order_date FROM orders;
-
-SELECT orderid, unit_price * quantity FROM order_details;
-```
-
-- Select statement with `WHERE` operator.
-
-```sql
-SELECT company_name, contact_name FROM customers WHERE country='Mexico';
-
+SELECT * FROM customers WHERE country = 'Mexico';
 SELECT * FROM posts WHERE title = 'can''t cook'
-
 SELECT COUNT(*) FROM order_details WHERE quantity > 20;
-
 SELECT COUNT(*) FROM orders WHERE price <= 250;
-
 SELECT COUNT(*) FROM orders WHERE order_date >= '1998-01-01';
-```
 
-- Select statement with `WHERE` and `AND` operators.
-
-```sql
 SELECT * FROM orders WHERE price > 100 AND ship_country = 'Germany';
-```
-
-- Select statement with `WHERE` and `OR` operators.
-
-```sql
 SELECT * FROM orders WHERE ship_country = 'USA' OR shipcountry = 'Brazil';
-```
+SELECT COUNT(*) FROM orders WHERE (ship_country = 'Canada' OR ship_country = 'Spain') AND shipped_date > '1997-05-01';
 
-- Select statement with `WHERE` and `NOT` operators.
-
-```sql
 SELECT * FROM suppliers WHERE NOT country = 'USA';
+SELECT * FROM order_details WHERE unit_price BETWEEN 10 AND 20;
+SELECT * FROM suppliers WHERE country IN ('Germany', 'France', 'Spain', 'Italy');
+
+SELECT DISTINCT country, city FROM suppliers ORDER BY country ASC, city DESC;
+SELECT product_name, unit_price FROM products ORDER BY unit_price DESC, product_name ASC;
+
+SELECT MIN(orde_rdate) FROM orders WHERE ship_country = 'Italy';
+SELECT MAX(shipped_date) FROM orders WHERE ship_country = 'Canada';
+SELECT SUM(quantity) FROM order_details WHERE product_id = 14;
+SELECT AVG(quantity) FROM order_details WHERE product_id = 35;
+
+# `%` sign stands for 0 or more any characters.
+# `_` sign stands for exactly 1 any charater.
+SELECT company_name FROM suppliers WHERE company_name LIKE '_or%';
+
+SELECT unit_price * quantity AS total_spent FROM order_details;
+SELECT unit_price * quantity AS total_spent FROM order_details ORDER BY total_spent DESC;
+# This does not work, because `WHERE` runs before `SELECT`
+SELECT unit_price * quantity AS total_spent FROM order_details WHERE total_spent > 10;
+
+SELECT product_name, uni_tprice * units_in_stock AS total_inventory FROM products ORDER BY total_inventory ASC LIMIT 2;
+
+SELECT * FROM customers WHERE region IS NULL;
+SELECT * FROM suppliers WHERE region IS NOT NULL;
 ```
 
-- Select statement with combined operators.
+### Joining tables
+
+- `INNER JOIN` - The PostgreSQL `INNER JOIN` (simply `JOIN`) returns all rows from multiple tables where the join condition is met.
 
 ```sql
-SELECT COUNT(*)
-FROM orders
-WHERE (ship_country = 'Canada' OR ship_country = 'Spain')
-AND shipped_date > '1997-05-01';
+SELECT customer_name, order_date FROM orders JOIN customers ON customers.customer_id = orders.customer_id;
+SELECT suppliers_name, product_price FROM products JOIN suppliers ON products.supplier_id = suppliers.supplier_id;
+
+SELECT company_name, order_date, unit_price, quantity FROM orders
+JOIN order_details ON orders.order_id=order_details.order_id
+JOIN customers ON customers.customer_id=orders.customer_id;
+
+SELECT company_name, product_name, category_name, order_date, order_details.unit_price, quantity FROM orders
+JOIN order_details ON orders.order_id = order_details.order_id
+JOIN customers ON customers.customer_id = orders.customer_id
+JOIN products ON products.product_id = order_details.product_id
+JOIN categories ON categories.category_id = products.category_id
+WHERE category_name = 'Seafood' AND order_details.unit_price * quantity >= 500;
 ```
 
-- Select statement with `WHERE` and `BETWEEN` operators.
+- `LEFT OUTER JOIN` - The PostgreSQL `LEFT OUTER JOIN` (simply `LEFT JOIN`) returns all rows from the LEFT-hand table specified in the ON condition and only those rows from the other table where the joined fields are equal (join condition is met).
 
 ```sql
-SELECT * FROM order_details WHERE unitprice BETWEEN 10 AND 20;
+
+SELECT product_name, order_id FROM products
+LEFT JOIN order_details ON products.product_id = order_details.product_id;
+
+SELECT product_name, order_id FROM products
+LEFT JOIN order_details ON products.product_id = order_details.product_id WHERE order_id IS NULL;
 ```
 
-- Select statement with `WHERE` and `IN` operators.
+- `RIGHT OUTER JOIN` - The PostgreSQL `RIGHT OUTER JOIN` (simply `RIGHT JOIN`) returns all rows from the RIGHT-hand table specified in the ON condition and only those rows from the other table where the joined fields are equal (join condition is met).
 
 ```sql
-SELECT * FROM suppliers
-WHERE country IN ('Germany', 'France', 'Spain', 'Italy');
+SELECT company_name, order_id FROM orders RIGHT JOIN customers ON customers.customer_id = orders.customer_id
+WHERE order_id IS NULL;
+
+SELECT company_name, products.customer_id FROM products
+RIGHT JOIN customers ON customers.customer_id = products.customer_id;
 ```
 
-## References
+- `FULL OUTER JOIN` - The PostgreSQL `FULL OUTER JOIN` (simply `FULL JOIN`) returns all rows from the LEFT-hand table and RIGHT-hand table with nulls in place where the join condition is not met.
 
+```sql
+SELECT company_name, order_id FROM orders
+FULL JOIN customers ON customers.customer_id = orders.customer_id;
+
+SELECT product_name, category_name FROM categories
+FULL JOIN products ON products.category_id = categories.category_id;
+```
+
+- `USING` - Reducing typings.
+
+```sql
+SELECT * FROM orders
+JOIN order_details USING (order_id);
+
+
+SELECT * FROM orders
+JOIN order_details USING (order_id)
+JOIN products USING (product_id);
+```
+
+### Grouping and aggregation
+
+- `GROUP BY` - The PostgreSQL `GROUP BY` clause is used in a `SELECT` statement to collect data across multiple records and group the results by one or more columns.
+
+```sql
+SELECT COUNT(*), country FROM customers
+GROUP BY country
+ORDER BY COUNT(*) DESC;
+
+SELECT COUNT(*), category_name FROM categories
+JOIN products ON categories.category_id = products.category_id
+GROUP BY category_name
+ORDER BY COUNT(*) DESC;
+
+SELECT product_name, ROUND(AVG(quantity)) FROM products
+JOIN order_details ON order_details.product_id = products.product_id
+GROUP BY product_name
+ORDER BY AVG(quantity) DESC;
+
+SELECT COUNT(*),country FROM suppliers
+GROUP BY country
+ORDER BY COUNT(*) DESC;
+
+SELECT product_name, SUM(quantity * order_details.unit_price) AS amount_bought FROM products
+JOIN order_details ON order_details.product_id = products.product_id
+JOIN orders ON orders.order_id = order_details.order_id
+WHERE order_date BETWEEN '1997-01-01' AND '1997-12-31'
+GROUP BY product_name
+ORDER BY amount_bought DESC;
+```
+
+- `HAVING` - The PostgreSQL `HAVING` clause is used in combination with the `GROUP BY` clause to restrict the groups of returned rows to only those whose the condition is `TRUE`.
+
+```sql
+SELECT product_name, SUM(quantity * order_details.unit_price) AS amout_bought FROM products
+JOIN order_details USING (product_id)
+GROUP BY product_name
+HAVING SUM(quantity * order_details.unit_price) < 2000
+ORDER BY amout_bought ASC;
+
+SELECT company_name, SUM(quantity * order_details.unit_price) AS amout_bought FROM customers
+NATURAL JOIN orders
+NATURAL JOIN order_details
+WHERE order_date BETWEEN '1997-01-01' AND '1997-6-30'
+GROUP BY company_name
+HAVING SUM(quantity * order_details.unit_price) > 5000
+ORDER BY amout_bought DESC;
+```
+
+### Combining queries
+
+- `UNION` - The PostgreSQL `UNION` operator is used to combine the result sets of 2 or more `SELECT` statements. It removes duplicate rows between the various `SELECT` statements. Each `SELECT` statement within the `UNION` operator must have the same number of fields in the result sets with similar data types.
+
+```sql
+SELECT company_name FROM customers
+UNION
+SELECT company_name FROM suppliers;
+```
+
+- `INTERSECT` - The PostgreSQL `INTERSECT` operator returns the intersection of 2 or more datasets. Each dataset is defined by a `SELECT` statement. If a record exists in both data sets, it will be included in the `INTERSECT` results. However, if a record exists in one data set and not in the other, it will be omitted from the `INTERSECT` results.
+
+```sql
+SELECT city FROM customers
+INTERSECT
+SELECT city FROM suppliers
+ORDER BY country ASC;
+```
+
+- `EXCEPT` - The PostgreSQL `EXCEPT` operator is used to return all rows in the first `SELECT` statement that are not returned by the second SELECT statement. Each `SELECT` statement will define a dataset. The `EXCEPT` operator will retrieve all records from the first dataset and then remove from the results all records from the second dataset.
+
+```sql
+SELECT city FROM suppliers
+EXCEPT
+SELECT city FROM customers;
+```
+
+### References
+
+- [PostgreSQL pattern matching.](https://www.postgresql.org/docs/9.3/functions-matching.html)
 - [PostgreSQL tutorial #1.](https://www.postgresqltutorial.com/)
 - [PostgreSQL tutorial #2.](https://www.techonthenet.com/postgresql/index.php)
 - [PostgreSQL udemy course.](https://www.udemy.com/course/postgresql-from-zero-to-hero/)

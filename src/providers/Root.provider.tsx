@@ -6,14 +6,12 @@ import { ThemeProvider } from 'styled-components'
 
 import { CodeHighlighter } from '../components/CodeHighlighter/CodeHighlighter.component'
 import { Divider } from '../components/Divider/Divider.component'
-import { ExamplesTitle } from '../components/ExamplesTitle/ExamplesTitle.component'
 import { Link } from '../components/Link/Link.component'
 import { createMDXHeading } from '../components/MDXHeading/MDXHeading.component'
-import { MDXHeadingOne } from '../components/MDXHeadingOne/MDXHeadingOne.component'
-import { TableOfContents } from '../components/TableOfContents/TableOfContents.component'
+import { MDXIntro } from '../components/MDXIntro/MDXIntro.component'
 import { Layout } from '../layout/Layout.component'
-import { defaultTheme } from '../styles/default.theme'
 import { GlobalStyle } from '../styles/GlobalStyle'
+import { theme } from '../styles/theme'
 
 export const RootProvider: FCC = ({ children }) => (
   <>
@@ -26,13 +24,11 @@ export const RootProvider: FCC = ({ children }) => (
       />
       <title>{'Ofanotes'}</title>
     </Helmet>
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <MDXProvider
         components={{
-          ExamplesTitle,
-          MDXHeadingOne,
-          TableOfContents,
+          MDXIntro,
           a: Link,
           h1: createMDXHeading('h1'),
           h2: createMDXHeading('h2'),

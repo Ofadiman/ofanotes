@@ -6,11 +6,11 @@ tags:
   - SQL
 ---
 
-<MDXHeadingOne />
-
-This guide covers how to use [docker-compose](https://docs.docker.com/compose/) tool to create a PostgreSQL container and access it using [pgAdmin 4](https://www.pgadmin.org/).
-
-<TableOfContents />
+<MDXIntro>
+  This guide covers how to use
+  [docker-compose](https://docs.docker.com/compose/) tool to create a PostgreSQL
+  container and access it using [pgAdmin 4](https://www.pgadmin.org/).
+</MDXIntro>
 
 ### Creating `docker-compose.yaml` file
 
@@ -73,6 +73,6 @@ Before you can use the pgAdmin client to manage the objects that reside on your 
 3. In "general" settings tab fill up the "Name" field.
 4. In "connection" settings tab fill up the "Host name" (`db`), "Port" (`5432`), "Username" (`postgres`), "Maintenance database" (`postgres`) and "Password" (`postgres`).
 
-## References
+### References
 
 - [Set up a PostgreSQL server and pgAdmin with Docker.](https://linuxhint.com/postgresql_docker/)

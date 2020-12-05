@@ -5,11 +5,11 @@ tags:
   - TypeScript
 ---
 
-<MDXHeadingOne />
-
-TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally. You can also create your own custom utility types.
-
-<TableOfContents />
+<MDXIntro>
+  TypeScript provides several utility types to facilitate common type
+  transformations. These utilities are available globally. You can also create
+  your own custom utility types.
+</MDXIntro>
 
 ### The `ConstructorParameters` type
 
@@ -104,7 +104,6 @@ interface FizzBuzz {
 }
 
 type Fizz = Omit<FizzBuzz, 'buzz'>
-
 ```
 
 ### The `Parameters` type
@@ -237,6 +236,6 @@ declare function fn(name: string): string
 type FnReturn = ReturnType<typeof fn>
 ```
 
-## References
+### References
 
 - [Official TypeScript documentation.](https://www.typescriptlang.org/docs)

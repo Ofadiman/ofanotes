@@ -32,10 +32,12 @@ export const StyledLineContent = styled.span`
 `
 
 export const StyledLineNumber = styled.span`
+  display: inline-block;
   opacity: 0.5;
   padding-right: 8px;
   text-align: right;
   user-select: none;
+  width: 30px;
 `
 
 export const StyledLineDecoration = styled.span`

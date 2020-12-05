@@ -5,11 +5,15 @@ tags:
   - Git
 ---
 
-<MDXHeadingOne />
-
-SSH stands for secure shell. It is a remote administration protocol that allows users to control and modify their remote servers over the internet. It provides a mechanism for authenticating a remote user, transferring inputs from the client to the host, and relaying the output back to the client. You can execute shell commands in the same manner as you would if you were physically operating the remote computer. SSH supports several public key algorithms for authentication keys i.e. `rsa`, `dsa`, `ecdsa` and `ed25519`.
-
-<TableOfContents />
+<MDXIntro>
+  SSH stands for secure shell. It is a remote administration protocol that
+  allows users to control and modify their remote servers over the internet. It
+  provides a mechanism for authenticating a remote user, transferring inputs
+  from the client to the host, and relaying the output back to the client. You
+  can execute shell commands in the same manner as you would if you were
+  physically operating the remote computer. SSH supports several public key
+  algorithms for authentication keys i.e. `rsa`, `dsa`, `ecdsa` and `ed25519`.
+</MDXIntro>
 
 ### The `ssh` command
 
@@ -71,7 +75,7 @@ $ git clone git@github-host_name:username/repository.git
 $ git remote set-url origin git@host_name:username/repository.git
 ```
 
-## References
+### References
 
 - [Command line options for ssh-keygen](https://linux.die.net/man/1/ssh-keygen)
 - [Connecting to GitHub with ssh](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh)

@@ -61,7 +61,7 @@ export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Elem
 
 export const query = graphql`
   query HomeQuery {
-    allMdx(sort: { order: DESC, fields: frontmatter___createdAt }) {
+    allMdx(sort: { order: DESC, fields: [frontmatter___createdAt] }) {
       edges {
         node {
           frontmatter {

@@ -1,6 +1,6 @@
 import { css, DefaultTheme } from 'styled-components'
 
-export const defaultTheme: DefaultTheme = {
+export const theme: DefaultTheme = {
   mediaQueries: {
     below: {
       desktop: '@media(max-width: 1200px)',
@@ -45,6 +45,9 @@ export const defaultTheme: DefaultTheme = {
     mdxHeading: {
       svg: 'hsl(0, 0%, 80%)',
       svgHover: 'hsl(0, 0%, 20%)'
+    },
+    mdxIntro: {
+      link: 'hsl(265, 100%, 40%)'
     },
     menuItem: {
       highlight: 'hsl(265, 100%, 60%)'

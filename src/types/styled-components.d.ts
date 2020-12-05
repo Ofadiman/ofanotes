@@ -47,6 +47,9 @@ declare module 'styled-components' {
         svg: string
         svgHover: string
       }
+      mdxIntro: {
+        link: string
+      }
       menuItem: {
         highlight: string
       }
