@@ -1,0 +1,40 @@
+---
+title: JavaScript tricks
+createdAt: 2020-12-13T08:47:40.972Z
+tags:
+  - JavaScript
+---
+
+<MDXIntro>
+  There are many ways to write code but generally the first way for many people
+  is very long and can take you some time. Here are some tips that will increase
+  your efficiency and productivity when coding JavaScript.
+</MDXIntro>
+
+### Populate array
+
+```javascript
+const filledArray = new Array(10).fill(null).map((_, index) => index)
+```
+
+### Remove duplicates from array
+
+```javascript
+const array = [23, 23, 23, 23, 67, 45]
+const withoutDuplicates = [...new Set(array)]
+```
+
+### Transform array to object
+
+```javascript
+const arr = ['value1', 'value2', 'value3']
+const obj = { ...arr }
+```
+
+### Remove falsy values from array
+
+```javascript
+const arr = [{}, undefined, [], false, 66, false, 0, '', 'not empty']
+
+const newArr = arr.filter(Boolean) // Returns: [{}, [], 66, 'not empty']
+```

@@ -16,10 +16,9 @@
     "dev": "gatsby develop",
     "eslint:find:deprecated": "eslint-find-rules --deprecated --no-error .eslintrc.js",
     "eslint:find:unused": "eslint-find-rules --unused --no-error .eslintrc.js",
-    "gen": "plop",
+    "gen": "plop && eslint -f ./eslint.formatter.js {src,codegen}/**/*.{ts,tsx,js,jsx} --fix || exit 0",
     "lint:check": "eslint {src,codegen}/**/*.{ts,tsx,js,jsx}",
     "lint:fix": "eslint {src,codegen}/**/*.{ts,tsx,js,jsx} --fix",
-    "postgen": "eslint -f ./eslint.formatter.js {src,codegen}/**/*.{ts,tsx,js,jsx} --fix || exit 0",
     "serve": "gatsby serve",
     "start": "npm run develop"
   },

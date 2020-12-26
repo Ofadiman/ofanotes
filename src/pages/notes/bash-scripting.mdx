@@ -1,0 +1,104 @@
+---
+title: Bash scripting
+createdAt: 2020-12-24T11:12:25.333Z
+tags:
+  - Linux
+---
+
+<MDXIntro>
+  Bash (Bourne Again Shell) is a type of interpreter that processes shell
+  commands. A shell interpreter takes commands in plain text format and calls
+  Operating System services to do something. A shell scripting is writing a
+  program for the shell to execute and a shell script is a file or program that
+  shell will execute.
+</MDXIntro>
+
+### General info
+
+- Bash is an interpreter which means that it reads and executes your script line by line.
+- Runtime errors do not stop script execution.
+- Set the absolute path to the bash interpreter like this `#!/usr/bin/env bash` to make sure your commands will run on every system.
+- Type `echo $?` to print the status code of the latest executed command.
+
+### Useful commands
+
+- `cat` - Concatenate files to standard output.
+- `cut` - Print selected parts of lines from each file to standard output.
+- `grep` - Search for patterns in each file.
+- `head` - Print the first 10 lines of each file to standard output.
+- `less` - Print the file content one page at a time.
+- `man` - Print the manual of another command.
+- `pwd` - Print the name of the current working directory.
+- `set` - Set or unset values of shell options and positional parameters.
+- `tail` - Print the last 10 lines of each file to standard output.
+- `tee` - Copy standard input to each FILE, and also to standard output.
+- `tr` - Translate, squeeze, and delete characters from standard input, writing to standard output.
+- `whatis` - Print more information about selected command.
+- `which` - Identify the location of a given executable.
+
+### File descriptors
+
+A file descriptor is an integer number that indicates **_STDIN_**, **_STDOUT_**, **_STDERR_**.
+
+- `0` - Indicates **_STDIN_**.
+- `1` - Indicates **_STDOUT_**.
+- `2` - Indicates **_STDERR_**.
+
+### Redirection operations
+
+- `cat < filename.txt` - Read file content.
+- `cat << EOF <some-content-here> EOF` - Specify the delimiter (usually `EOF`). After the program sees the delimiter, it will stop.
+- `cat <<< "This is a string"` - Provide a string for a program.
+- `ls -a &> output.txt` - This is a shortcut command for storing both success and error results in the same file.
+- `ls -a 1> success.txt 2> error.txt` - Specify the files for success and error outputs of selected command.
+- `ls -a 2>> filename.txt` - Append error output of `ls -a` command in the specified file.
+- `ls -a > filename.txt` - Store success output of `ls -a` command in the specified file (overrides the file).
+- `ls -lrt | awk ${print $1}` - Pipe output from one command to input of another command.
+
+### Command `ls`
+
+- `-A` - List all files and directories (hidden inclusive) but hide `.` and `..` from output.
+- `-R` - List files and directories with their content recursively.
+- `-X` - Sort entries by file extensions.
+- `-a` - List all files directories (includes hidden content).
+- `-d */` - List only directories.
+- `-h` - Format files sizes in a more human-readable way.
+- `-l` - Use long format.
+- `-r` - Use reversed mode (by default reversed alphabetical order).
+- `-t` - Sort by last modified date in descending order.
+
+### Command `grep`
+
+- `-A <number>` - Print X number of lines after match.
+- `-B <number>` - Print X number of lines before match.
+- `-c` - Print only a count of selected lines per file.
+- `-i` - Ignore case distinctions in patterns and data.
+- `-n` - Print line number with output lines.
+- `-v` - Select non-matching lines.
+- `-w` - Match only whole words.
+
+**Examples**
+
+- `cat my_servers_info.txt | grep -E "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"` - List all ip v4 strings in the file.
+- `grep "bash" *` - Search for **_bash_** string in the current directory.
+- `grep "bash" file1.txt file2.txt` - Search for **_bash_** string in selected files.
+- `ls -lart | grep "^-"` - List all files in the current directory.
+- `ls -lart | grep "^d"` - List all directories in the current directory.
+
+### Command `awk`
+
+- `-F:` - Change default separator (space) to colon.
+
+**Examples**
+
+- `awk '/^UUID/ {print $0}' /etc/fstab` - Print something with regexp search.
+- `awk -F: '$3 >= 1000 {print $1,$6}' /etc/passwd` - Print values when the third field is more or equal to a 1000.
+- `date | awk 'OFS="/" {print $2, $3, $4}'` - Print selected columns from `date` command output and use `/` as a separator.
+- `date | awk '{print $2,$3,$6}'` - Print selected columns from `date` command output.
+- `who | awk 'BEGIN {print "Active Sessions"} {print $1,$4}'` - Print something preceded with a string.
+- `who | awk 'END {print "Done"} {print $1,$4}'` - Print something followed by a string.
+
+### Resources
+
+- [https://www.udemy.com/course/complete-bash-shell-scripting-b/](https://www.udemy.com/course/complete-bash-shell-scripting-b/)
+- [https://www.howtogeek.com/562941/how-to-use-the-awk-command-on-linux/](https://www.howtogeek.com/562941/how-to-use-the-awk-command-on-linux/)

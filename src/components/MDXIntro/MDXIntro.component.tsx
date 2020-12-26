@@ -4,7 +4,6 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 
 import { Divider } from '../Divider/Divider.component'
-import { Link } from '../Link/Link.component'
 import { SEO } from '../SEO/SEO.component'
 import { StyledDate, StyledLink } from './MDXIntro.styles'
 import { MDXIntroQueryResult, MDXIntroQueryResultEdge } from './MDXIntro.types'

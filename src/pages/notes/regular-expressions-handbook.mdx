@@ -1,0 +1,139 @@
+---
+title: Regular expressions handbook
+createdAt: 2020-12-13T11:00:44.351Z
+tags:
+  - JavaScript
+---
+
+<MDXIntro>
+  Regular expressions are patterns that provide a powerful way to search and
+  replace in text. In JavaScript, they are available via the RegExp object, as
+  well as being integrated in methods of strings.
+</MDXIntro>
+
+### Regex methods
+
+- `string.match(regexp)` - Finds all matches of regexp in the string.
+- `string.replace(regexp, replacement)` - Replaces match found using regexp in the string.
+- `regexp.test(string)` - Looks for at least one match, if found, returns **true**, otherwise **false**.
+
+### Flags
+
+- `g` - With this flag the search looks for all matches, without it – only the first match is returned.
+- `i` - With this flag the search is case-insensitive (no difference between **A** and **a**).
+- `m` - Multiline mode.
+- `s` - Dotall mode, that allows a dot character to match newline character `\n`.
+- `u` - Enables full Unicode support. [More information here.](https://javascript.info/regexp-unicode)
+- `y` - Sticky mode.
+
+### Character classes
+
+- `.` - A dot is a special character class that matches any character except a newline.
+- `\D` - Non-digit: any character except `\d`, for instance a letter. Same as `[^0-9]`.
+- `\S` - Non-space: any character except `\s`, for instance a letter. Same as `[^\s]`.
+- `\W` - Non-wordly character: anything but `\w`, e.g a non-latin letter or a space.
+- `\d` - A digit: a character from 0 to 9. Same as `[0-9]`.
+- `\s` - A space symbol: includes spaces, tabs `\t`, newlines `\n` and few other rare characters, such as `\v`, `\f` and `\r`. Same as `[\t\n\v\f\r ]`.
+- `\w` - A “wordly” character: either a letter of Latin alphabet or a digit or an underscore. Non-Latin letters (like cyrillic or hindi) do not belong to `\w`. Same as `[a-zA-Z0-9_]`.
+
+### Anchors
+
+- `$` - matches at the end of the text.
+- `^` - matches at the beginning of the text.
+
+The multiline mode affects the behavior of `^` and `$`. In the multiline mode they match not only at the beginning and the end of the string, but also at start or end of line.
+
+```ts 4-6
+const regex = /^\d.+!$/gmu
+
+const string = `
+1st place!
+2nd place!
+3rd place!
+4th place
+The end!
+`
+
+string.match(regex) // returns ['1st place!', '2nd place!', '3rd place!']
+```
+
+### Word boundary
+
+A word boundary `\b` is a test, just like `^` and `$`. There are three different positions that qualify as word boundaries:
+
+- At string start, if the first string character is a word character `\w`.
+- At string end, if the last string character is a word character `\w`.
+- Between two characters in the string, where one is a word character `\w` and the other is not.
+
+```ts
+const regex = /\bout\b/u
+
+'out'.match(regex) // returns "out"
+'out!'.match(regex) // returns "out"
+'[out!'.match(regex) // returns "out"
+'Aout'.match(regex) // returns "null"
+'outZ'.match(regex) // returns "null"
+'out9'.match(regex) // returns "null"
+'0out'.match(regex) // returns "null"
+```
+
+### Escaping special characters
+
+To use a special character as a regular one, prepend it with a backslash. Here is the full list of special characters `[`, `\`, `^`, `$`, `.`, `|`, `?`, `*`, `+`, `(`, `)`.
+
+### Sets and ranges
+
+Several characters or character classes inside square brackets `[…]` mean to search for any character among given. Besides normal ranges, there are **excluding** ranges that look like `[^…]`.
+
+### Quantifiers
+
+- `*` - Matches 0 or more characters. Same as `{0,}`.
+- `+` - Matches 1 or more characters. Same as `{1,}`.
+- `?` - Matches 0 or 1 character. Same as `{0,1}`.
+- `{n,m}` - Matches from "n" to "m" number of a characters.
+- `{n,}` - Matches at least "n" number of a characters.
+- `{n}` - Matches "n" number of a characters.
+
+<br />
+
+Quantifiers have two modes of work
+
+- `Greedy` - By default the regular expression engine tries to repeat the quantifier as many times as possible. For instance, `\d+` consumes all possible digits. When it becomes impossible to consume more (no more digits or string end), then it continues to match the rest of the pattern. If there’s no match then it decreases the number of repetitions (backtracks) and tries again.
+- `Lazy` - Enabled by the question mark after the quantifier. The regexp engine tries to match the rest of the pattern before each repetition of the quantifier.
+
+[More detailed explanation of quantifiers modes is available here.](https://javascript.info/regexp-greedy-and-lazy)
+
+### Examples
+
+- Match any string that start with "new".
+
+```ts
+const regex = /^new.*/u
+```
+
+- Match any string that ends with "old".
+
+```ts
+const regex = /(.+)?old$/u
+```
+
+- Match any `hours:minutes` string inside any other string.
+
+```ts
+const regex = /\b\d\d:\d\d\b/u
+
+'Breakfast at 09:00 in the room 123:456.'.match(regex) // returns "09:00"
+```
+
+- Match any hexadecimal html color.
+
+```ts
+const regex = /#[a-fA-F0-9]{6}\b/g
+
+'#1f3a56'.match(regex) // returns "#1f3a56"
+'#1f34a678'.match(regex) // returns "null"
+```
+
+### References
+
+- [https://javascript.info/regular-expressions](https://javascript.info/regular-expressions)

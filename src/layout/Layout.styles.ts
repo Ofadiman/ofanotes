@@ -4,11 +4,13 @@ import { Link } from '../components/Link/Link.component'
 
 export const StyledLink = styled(Link)`
   ${({ theme }) => css`
-    bottom: -60px;
     color: ${theme.palette.typography.light};
-    position: absolute;
-    right: 0;
+    display: block;
+    margin-bottom: -40px;
+    margin-left: auto;
+    margin-top: 100px;
     text-decoration: none;
+    width: fit-content;
   `}
 `
 

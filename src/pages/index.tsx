@@ -1,5 +1,5 @@
 import { graphql, PageProps } from 'gatsby'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 
 import SearchSvg from '../assets/icons/search.inline.svg'
 import { Input } from '../components/Input/Input.component'
@@ -9,18 +9,23 @@ import { HomePageQueryResult } from '../utils/pages/index/index.types'
 import { filterMenuItems } from '../utils/pages/index/index.utils'
 
 export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Element {
-  const [filteredMenuItems, setFilteredMenuItems] = useState(data.allMdx.edges)
+  const initialDataRef = useRef(
+    data.allMdx.edges.sort((first, second) =>
+      second.node.frontmatter.createdAt.localeCompare(first.node.frontmatter.createdAt)
+    )
+  )
+  const [filteredMenuItems, setFilteredMenuItems] = useState(initialDataRef.current)
   const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
     if (searchValue.trim() === '') {
-      setFilteredMenuItems(data.allMdx.edges)
+      setFilteredMenuItems(initialDataRef.current)
     } else {
       const currentSearchRegex = new RegExp(searchValue.trim(), 'i')
 
-      setFilteredMenuItems(filterMenuItems(currentSearchRegex, data.allMdx.edges))
+      setFilteredMenuItems(filterMenuItems(currentSearchRegex, initialDataRef.current))
     }
-  }, [data.allMdx.edges, searchValue])
+  }, [searchValue])
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(event.target.value)
@@ -61,7 +66,7 @@ export default function Home({ data }: PageProps<HomePageQueryResult>): JSX.Elem
 
 export const query = graphql`
   query HomeQuery {
-    allMdx(sort: { order: DESC, fields: [frontmatter___createdAt] }) {
+    allMdx {
       edges {
         node {
           frontmatter {
