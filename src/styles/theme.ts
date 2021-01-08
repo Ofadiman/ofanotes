@@ -57,8 +57,7 @@ export const theme: DefaultTheme = {
       code: 'hsl(265, 50%, 20%)',
       codeBackground: 'hsl(30, 70%, 92%)',
       light: 'hsl(265, 0%, 50%)',
-      main: 'hsl(0, 0%, 20%)',
-      strong: 'hsl(265, 50%, 50%)'
+      main: 'hsl(0, 0%, 20%)'
     }
   },
   typography: {
@@ -167,11 +166,6 @@ export const theme: DefaultTheme = {
       ${({ theme }) => css`
         color: ${theme.palette.typography.main};
         padding: 12px 0;
-      `}
-    `,
-    strong: css`
-      ${({ theme }) => css`
-        color: ${theme.palette.typography.strong};
       `}
     `
   },

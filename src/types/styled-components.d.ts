@@ -59,7 +59,6 @@ declare module 'styled-components' {
         codeBackground: string
         light: string
         main: string
-        strong: string
       }
     }
     typography: {
@@ -76,7 +75,6 @@ declare module 'styled-components' {
       input: FlattenInterpolation<ThemeProps<DefaultTheme>>
       li: FlattenInterpolation<ThemeProps<DefaultTheme>>
       p: FlattenInterpolation<ThemeProps<DefaultTheme>>
-      strong: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     zIndex: {
       header: number

@@ -1,0 +1,193 @@
+---
+title: Git handbook
+createdAt: 2020-12-26T15:21:05.374Z
+tags:
+  - Git
+  - Ubuntu
+---
+
+<MDXIntro>
+  Git is a free and open source distributed version control system designed to
+  handle everything from small to very large projects with speed and efficiency.
+</MDXIntro>
+
+### Git object types
+
+- `Blob` - A Git blob (binary large object) is the object type used to store the contents of each file in a repository. The file's SHA-1 hash is computed and stored in the blob object.
+- `Commit` - A Git commit is a snapshot of the hierarchy (Git tree) and the contents of the files (Git blob) in a Git repository.
+- `Tag` - A Git tag is similar to a Git reference, but the Git commit that it points to never changes. Git tags are helpful when you want to point to specific releases.
+- `Tree` - A Git tree object creates the hierarchy between files in a Git repository. You can use the Git tree object to create the relationship between directories and the files they contain.
+
+### File states
+
+- `Committed` - The file has been safely stored in a local database.
+- `Modified` - The file has been changed but will not go into your next commit.
+- `Staged` - The file has been marked in its current version to go into your next commit snapshot.
+- `Tracked` - The file has been in the last snapshot. Now, it can be in one of the following possible sub states: `Modified`, `Unmodified`, `Staged` or `Committed`.
+- `Unmodified` - The file has not been modified since last commit.
+- `Untracked` - Git doesn't track the file.
+
+### Command `config`
+
+**Description**
+
+Get and set repository or global options.
+
+**Options**
+
+- `--global` - Write to global `~/.gitconfig` file rather than the repository `.git/config`.
+- `--list, -l` - List all variables set in config file, along with their values.
+- `--local` - Write to the repository `.git/config` file. This is the default behavior.
+- `--system` - Write to system-wide `$(prefix)/etc/gitconfig` rather than the repository `.git/config`.
+
+**Examples**
+
+- `git config --global alias.amend commit --amend` - Set an alias for a frequently used git commands.
+- `git config --global core.editor "nano -w"` - Set nano editor as the default.
+- `git config --global core.editor "vim"` - Set vim editor as the default.
+- `git config --global user.email "ofadiman@gmail.com"` - Set global email.
+- `git config --global user.name "ofadiman"` - Set global username.
+
+### Command `add`
+
+**Description**
+
+Add file contents to the index.
+
+**Options**
+
+- `--chmod=(+|-)x` - Override the executable bit of the added files. The executable bit is only changed in the index, the files on disk are left unchanged.
+- `--dry-run, -n` - Don’t actually add the file(s), just show if they exist and/or will be ignored.
+- `--force, -f` - Allow adding otherwise ignored files.
+- `--interactive, -i` - Add modified contents in the working tree interactively to the index.
+
+**Examples**
+
+- `git add .` - Add everything to the staging area.
+- `git add docs/\*.txt` - Add all files with `.txt` extension in `docs` directory to the staging area.
+
+### Command `commit`
+
+**Description**
+
+Record changes to the repository.
+
+**Options**
+
+- `--amend` - Replace the tip of the current branch by creating a new commit.
+- `--author=<author>` - Override the commit author. Specify an explicit author using the standard `author <author@example.com>` format.
+- `--dry-run` - Do not create a commit, but show a list of paths that are to be committed, paths with local changes that will be left uncommitted and paths that are untracked.
+- `--long` - When doing a dry-run, give the output in the long-format. Implies `--dry-run`.
+- `--message=<msg>, -m <msg>` - Use the given `<msg>` as the commit message. If multiple `-m` options are given, their values are concatenated as separate paragraphs.
+- `--no-verify, -n` - This option bypasses the pre-commit and commit-msg hooks.
+- `--patch, -p` - Use the interactive patch selection interface to chose which changes to commit.
+- `--porcelain` - When doing a dry-run, give the output in a porcelain-ready format. Implies `--dry-run`.
+
+**Examples**
+
+- `git commit --amend -m "fix: component state"` - Amend the last commit with a new message.
+- `git commit --author="Ofadiman <ofadiman@gmail.com>" -m "fix: components"` - Override the commit author.
+
+### Command `branch`
+
+**Description**
+
+List, create, or delete branches.
+
+**Options**
+
+- `--delete, -d` -
+- `-D` - Shortcut for `--delete --force`.
+
+**Examples**
+
+### Command `merge`
+
+**Description**
+
+**Options**
+
+**Examples**
+
+### Command `rebase`
+
+**Description**
+
+**Options**
+
+**Examples**
+
+### Command `checkout`
+
+**Description**
+
+**Options**
+
+**Examples**
+
+### Command `clone`
+
+**Description**
+
+Clone a repository into a new directory.
+
+**Options**
+
+- `--branch <name>, -b <name>` - Instead of pointing the newly created **HEAD** to the branch pointed to by the cloned repository’s **HEAD**, point to `<name>` branch instead.
+
+**Examples**
+
+- `git clone -b feat/component git@github.com:Ofadiman/repo.git` - Clone only `feat/component` branch from a remote repo.
+
+### Command `rm`
+
+**Description**
+
+Remove files from the working tree and from the index.
+
+**Options**
+
+- `--dry-run, -n` - Don’t actually remove any file(s). Instead, just show if they exist in the index and would otherwise be removed by the command.
+- `-r` - Allow recursive removal when a leading directory name is given.
+- `--` - This option can be used to separate command-line options from the list of files, (useful when filenames might be mistaken for command-line options).
+
+**Examples**
+
+- `git rm --cached opinion.txt` - Remove specified file from staging area (works when the file hasn't been committed yet).
+
+### Command `reset`
+
+**Description**
+
+**Options**
+
+**Examples**
+
+### Command `log`
+
+**Description**
+
+**Options**
+
+**Examples**
+
+### Command `ls-files`
+
+**Description**
+
+Show information about files in the index and the working tree.
+
+**Options**
+
+- `--cached, -c` - Show cached files in the output (default).
+- `--deleted, -d` - Show deleted files in the output.
+- `--ignored, -i` - Show only ignored files in the output.
+- `--modified, -m` - Show modified files in the output.
+- `--others, -o` - Show other (i.e. untracked) files in the output.
+- `--stage, -s` - Show staged contents' mode bits, object name and stage number in the output.
+
+### Resources
+
+- [https://git-scm.com/](https://git-scm.com/)
+- [https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud](https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud)
+- [https://www.udemy.com/course/git-and-github-complete-guide/](https://www.udemy.com/course/git-and-github-complete-guide/)

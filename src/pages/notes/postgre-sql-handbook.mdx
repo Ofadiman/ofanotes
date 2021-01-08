@@ -238,6 +238,51 @@ EXCEPT
 SELECT city FROM customers;
 ```
 
+### Modifying data in tables
+
+- `INSERT` - The PostgreSQL `INSERT` statement is used to insert a single record or multiple records into a table in PostgreSQL.
+
+```sql
+INSERT INTO orders (customer_id, employee_id, order_date)
+VALUES (1, 4, '2017-09-16')
+```
+
+- `UPDATE` - The PostgreSQL `UPDATE` statement is used to update existing records in a table in a PostgreSQL database.
+
+```sql
+UPDATE order_details
+SET quantity = 40, discount = .05
+WHERE order_id = 11078 AND product_id = 11;
+```
+
+- `DELETE` - The PostgreSQL `DELETE` statement is used to delete a single record or multiple records from a table in PostgreSQL.
+
+```sql
+DELETE FROM orders
+WHERE order_id = 11078;
+```
+
+- `SELECT INTO` - The PostgreSQL `SELECT INTO` statement is used to copy all records from one table to another table in PostgreSQL.
+
+```sql
+SELECT * INTO orders_1997 FROM orders
+WHERE order_date BETWEEN '1997-01-01' AND '1997-12-31';
+```
+
+- `INSERT INTO SELECT` - The PostgreSQL `INSERT INTO SELECT` statement is used to copy all or only chosen records from one table to another table in PostgreSQL.
+
+```sql
+INSERT INTO orders_1997 SELECT * FROM orders
+WHERE order_date BETWEEN '1996-12-01' AND '1996-12-31'
+```
+
+- `RETURNING` - The PostgreSQL `RETURNING` statement is used to return specific columns after `INSERT`, `UPDATE`, and `DELETE` statements in PostgreSQL.
+
+```sql
+UPDATE products SET unit_price = unit_price * 1.2 WHERE product_id = 1
+RETURNING product_id, unit_price AS new_price;
+```
+
 ### References
 
 - [https://www.postgresql.org/docs/9.3/functions-matching.html](https://www.postgresql.org/docs/9.3/functions-matching.html)

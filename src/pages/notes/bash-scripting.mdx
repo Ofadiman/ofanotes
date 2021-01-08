@@ -2,7 +2,7 @@
 title: Bash scripting
 createdAt: 2020-12-24T11:12:25.333Z
 tags:
-  - Linux
+  - Ubuntu
 ---
 
 <MDXIntro>
@@ -20,18 +20,25 @@ tags:
 - Set the absolute path to the bash interpreter like this `#!/usr/bin/env bash` to make sure your commands will run on every system.
 - Type `echo $?` to print the status code of the latest executed command.
 
-### Useful commands
+### Commands in a nutshell
 
 - `cat` - Concatenate files to standard output.
+- `crontab` - Maintain crontab files for individual users.
 - `cut` - Print selected parts of lines from each file to standard output.
+- `date` - Print or set the system date and time.
 - `grep` - Search for patterns in each file.
 - `head` - Print the first 10 lines of each file to standard output.
 - `less` - Print the file content one page at a time.
 - `man` - Print the manual of another command.
+- `ping` - Send ICMP ECHO_REQUEST to network hosts.
+- `ps` - Report a snapshot of the current processes.
 - `pwd` - Print the name of the current working directory.
 - `set` - Set or unset values of shell options and positional parameters.
+- `ssh` - OpenSSH remote login client.
+- `systemctl` - Control the systemd system and service manager.
 - `tail` - Print the last 10 lines of each file to standard output.
 - `tee` - Copy standard input to each FILE, and also to standard output.
+- `test` - Check file types and compare values.
 - `tr` - Translate, squeeze, and delete characters from standard input, writing to standard output.
 - `whatis` - Print more information about selected command.
 - `which` - Identify the location of a given executable.
@@ -97,6 +104,14 @@ A file descriptor is an integer number that indicates **_STDIN_**, **_STDOUT_**,
 - `date | awk '{print $2,$3,$6}'` - Print selected columns from `date` command output.
 - `who | awk 'BEGIN {print "Active Sessions"} {print $1,$4}'` - Print something preceded with a string.
 - `who | awk 'END {print "Done"} {print $1,$4}'` - Print something followed by a string.
+
+### Command chaining operators
+
+- `&&` - Execute all commands one by one and stop immediately when the first command fails (`ls && docker -v && pwd`).
+- `;` - Execute all commands one by one and don't stop when some commands fail (`ls;docker -v;pwd`).
+- `||` - Execute second command only if the first failed (`docker -v || ls`).
+
+You can also combine this operators like so: `which docker && echo "docker is installed" || echo "docker is not installed"`.
 
 ### Resources
 

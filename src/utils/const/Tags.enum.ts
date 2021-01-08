@@ -9,9 +9,9 @@ export enum Tags {
   HTML5 = 'HTML5',
   JavaScript = 'JavaScript',
   Jest = 'Jest',
-  Linux = 'Linux',
   Node = 'Node',
   React = 'React',
   TypeScript = 'TypeScript',
+  Ubuntu = 'Ubuntu',
   Webpack = 'Webpack'
 }
